@@ -51,7 +51,6 @@
           <div class="scale-body"><div class="diagram-scroll" tabindex="0" aria-label="系统规模交互图，可横向滚动"><svg class="scale-svg" viewBox="0 0 670 340" role="img" aria-label="单卡、多卡和超节点集群的规模变化"></svg></div><div class="scale-copy"><p class="micro-label">优化关注点</p><h3 data-caption-title></h3><p data-caption-body></p><ul class="focus-list" data-focus-list></ul></div></div>
           <div class="figure-bottom"><span class="figure-note">计算系统演进示意 · 布局与动画不对应物理时延</span><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播系统演进动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停系统演进动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></div>
         </div>
-        <p class="source-line">背景依据：演示材料第 2、4、6、8 页。</p>
       </div>
     </section>
 
@@ -69,7 +68,6 @@
           <div class="constraint-visual"><svg id="constraint-diagram" viewBox="0 0 470 430" role="img" aria-label="存储、计算、互连与软件之间的系统关系"></svg><p id="constraint-caption" aria-live="polite">数据到达计算单元之前，容量与带宽都可能成为约束。</p></div>
         </div>
         <div class="dark-insight"><span class="insight-symbol" aria-hidden="true">↳</span><p>设计空间正在扩大。我们需要在构建系统之前，<strong>评估跨层选择带来的影响。</strong></p></div>
-        <p class="source-line">背景依据：演示材料第 5–12 页。</p>
       </div>
     </section>
 
@@ -86,7 +84,6 @@
           <div class="stage-tabs compact-tabs" role="group" aria-label="系统建模阶段"><button data-step="0" type="button"><span>01</span>描述输入<i></i></button><button data-step="1" type="button"><span>02</span>求解算子时间<i></i></button><button data-step="2" type="button"><span>03</span>推进系统状态<i></i></button><button data-step="3" type="button"><span>04</span>观测服务指标<i></i></button></div>
           <figcaption class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播建模框架动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停建模框架动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></figcaption>
         </figure>
-        <p class="source-line">框架依据：演示材料第 13–17、28–30 页。动画为机制示意。</p>
       </div>
     </section>
 
@@ -105,7 +102,6 @@
           <div class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播算子建模动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停算子建模动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></div>
         </div>
         <div class="model-principle"><span class="principle-mark" aria-hidden="true">∴</span><p>统一的是建模方法。<strong>不同架构的资源、访问粒度和并发来源，仍需分别描述与校准。</strong></p></div>
-        <p class="source-line" id="kernel-source">图解依据：演示材料第 17–18 页。任务和时间均为教学示意。</p>
       </div>
     </section>
 
@@ -122,7 +118,6 @@
           <figcaption class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播异步调度动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停异步调度动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></figcaption>
         </figure>
         <div class="metrics-row"><article><span>TTFT</span><h3>首 Token 延时</h3><p>从请求到达到首个有效输出 token 可见。</p></article><article><span>TPOT</span><h3>每 Token 生成间隔</h3><p>首末 token 间隔 ÷（输出 token 数 − 1），输出多于 1 个时适用。</p></article><article><span>THROUGHPUT</span><h3>输出吞吐</h3><p>声明的观测窗口内，输出 token 数与时间之比。</p></article></div>
-        <p class="source-line">图解依据：演示材料第 28–32 页。每格是相对时间；CPU 准备 1 格、Device 计算 3 格，不代表实测时延。指标比较需保持相同测量边界。</p>
       </div>
     </section>
 
@@ -131,9 +126,9 @@
         <p class="eyebrow">06 / 多维建模视角</p>
         <div class="section-heading"><h2>计算、互连、存储。<br><span class="gradient-text">放进同一个系统。</span></h2><p class="section-lead">不同模块回答不同的问题，并共同服务于软硬件协同评估。</p></div>
         <div class="module-grid">
-          <article class="module-card"><div class="module-icon compute-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="17" y="17" width="30" height="30" rx="7"/><path d="M25 3v14M39 3v14M25 47v14M39 47v14M3 25h14M3 39h14M47 25h14M47 39h14"/><path d="M26 26h12v12H26z"/></svg></div><p class="micro-label">COMPUTE</p><h3>ArchPrism</h3><p>连接算子、硬件资源与推理服务，解释性能从哪里来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>计算工作量与有效资源能力</li><li>分层流量、并发与资源依赖</li><li>Kernel 时间与调度反馈</li></ul></details><span class="module-source">材料第 13–34 页</span></article>
-          <article class="module-card"><div class="module-icon network-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M15 16 49 16 49 48 15 48Z M15 16l34 32M49 16 15 48"/><rect x="8" y="9" width="14" height="14" rx="4"/><rect x="42" y="9" width="14" height="14" rx="4"/><rect x="8" y="41" width="14" height="14" rx="4"/><rect x="42" y="41" width="14" height="14" rx="4"/></svg></div><p class="micro-label">INTERCONNECT</p><h3>ProtoBridge</h3><p>让超节点互连协议的差异，在数据包执行与依赖中显式呈现。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>通信算子到数据包的转换</li><li>协议参数与数据包依赖</li><li>共享的数据包执行模块</li></ul></details><span class="module-source">材料第 35–36 页</span></article>
-          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBF 系统仿真</h3><p>把新型存储设备、调度策略与真实推理工作负载连接起来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>模块化的 HBF 设备模型</li><li>容量与数据调度策略</li><li>推理引擎接入与系统级评估</li></ul></details><span class="module-source">材料第 37–40 页</span></article>
+          <article class="module-card"><div class="module-icon compute-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="17" y="17" width="30" height="30" rx="7"/><path d="M25 3v14M39 3v14M25 47v14M39 47v14M3 25h14M3 39h14M47 25h14M47 39h14"/><path d="M26 26h12v12H26z"/></svg></div><p class="micro-label">COMPUTE</p><h3>ArchPrism</h3><p>连接算子、硬件资源与推理服务，解释性能从哪里来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>计算工作量与有效资源能力</li><li>分层流量、并发与资源依赖</li><li>Kernel 时间与调度反馈</li></ul></details></article>
+          <article class="module-card"><div class="module-icon network-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M15 16 49 16 49 48 15 48Z M15 16l34 32M49 16 15 48"/><rect x="8" y="9" width="14" height="14" rx="4"/><rect x="42" y="9" width="14" height="14" rx="4"/><rect x="8" y="41" width="14" height="14" rx="4"/><rect x="42" y="41" width="14" height="14" rx="4"/></svg></div><p class="micro-label">INTERCONNECT</p><h3>ProtoBridge</h3><p>让超节点互连协议的差异，在数据包执行与依赖中显式呈现。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>通信算子到数据包的转换</li><li>协议参数与数据包依赖</li><li>共享的数据包执行模块</li></ul></details></article>
+          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBF 系统仿真</h3><p>把新型存储设备、调度策略与真实推理工作负载连接起来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>模块化的 HBF 设备模型</li><li>容量与数据调度策略</li><li>推理引擎接入与系统级评估</li></ul></details></article>
         </div>
         <div class="research-direction"><div><span class="micro-label">建模评估</span><p>给定系统设计，理解性能与瓶颈。</p></div><span class="direction-arrow" aria-hidden="true">→</span><div><span class="micro-label">进一步的研究方向</span><p>在多维约束下，探索系统设计空间。</p></div></div>
       </div>
@@ -150,8 +145,7 @@
 
     <section id="about" class="about-section">
       <div class="container">
-        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>一起理解，下一代计算系统。</h2><p>面向下一代超节点的系统级仿真框架</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p>朱振华 · 杨昕昊 · 朱昱 · 廖天羽 · 谢童欣</p><span>研究分享 · 2026.10.29</span></div></div>
-        <details class="source-disclosure"><summary>背景材料与图解说明 <span aria-hidden="true">＋</span></summary><div class="source-content"><p>本页依据所提供的《202610-sharing-simulator-v5》演示材料整理。交互图为机制讲解而重绘，动画速度与相对时间不代表实际硬件性能。</p><dl><div><dt>背景与约束</dt><dd>第 2、4–12 页：算力需求、系统演进与仿真工具挑战。</dd></div><div><dt>建模框架</dt><dd>第 13–17、28–30 页：硬件到 Kernel、Kernel 到服务行为，以及调度反馈。</dd></div><div><dt>算子图解</dt><dd>第 18 页：10 个任务 / 4 个 SM；第 20–21 页：冷缓存、容量为 2 个等大小 tile 的 LRU 示例；第 24 页：资源与依赖。</dd></div><div><dt>调度图解</dt><dd>第 29–32 页：CPU 与 Device 时间线。Depth=2 表示可以提前准备并提交下一批，图中 Device 计算保持串行。</dd></div><div><dt>模块与研究方向</dt><dd>第 35–44 页：计算、互连、新型存储与系统设计探索。自动化系统设计是进一步研究方向。</dd></div></dl><p class="source-boundary">验证范围随模块和评估设置而定。GPU/NPU 是计算建模材料的实证范围；PIM、Dataflow 为扩展抽象示意。</p></div></details>
+        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>一起理解，下一代计算系统。</h2><p>面向下一代超节点的系统级仿真框架</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p>朱振华 · 杨昕昊 · 朱昱 · 廖天羽 · 谢童欣</p></div></div>
         <footer><a class="footer-brand" href="#top">NICS-EFC <strong>SysArch</strong></a><p>计算 · 互连 · 存储 · 系统</p><span>2026</span></footer>
       </div>
     </section>

@@ -124,9 +124,9 @@
     {at:7,still:8.7,title:'总时间由资源和依赖共同决定。',body:'执行时间是满足约束的 makespan，不能把所有阶段简单相加，也不能全局取最大值。'}
   ];
   const kernelModes={
-    compute:{duration:12,steps:computeSteps,eyebrow:'计算工作量 / COMPUTE',title:'10 个任务，怎样分给 4 个 SM？',label:'计算任务分波次执行示意',source:'图解依据：演示材料第 17–18 页。10 个任务 / 4 个 SM；动画为教学示意。'},
-    cache:{duration:19.6,steps:cacheSteps,eyebrow:'缓存与物理流量 / MEMORY',title:'同一组读取，哪些数据可以复用？',label:'冷缓存和两个等大小 tile 容量下的 LRU 命中过程',source:'图解依据：演示材料第 20–21 页。冷缓存、容量为 2 个等大小 tile；命中 L2 与访问 HBM 的完整往返时间分别取 100 ns / 400 ns。'},
-    pipeline:{duration:10,steps:pipelineSteps,eyebrow:'资源与依赖 / PIPELINE',title:'依赖决定串行，独立资源才可能重叠。',label:'两个 tile 的 QK、softmax、PV 依赖与资源重叠示意',source:'图解依据：演示材料第 24 页。横轴为相对时间，不代表某一具体 Kernel 的真实时序。'}
+    compute:{duration:12,steps:computeSteps,eyebrow:'计算工作量 / COMPUTE',title:'10 个任务，怎样分给 4 个 SM？',label:'计算任务分波次执行示意'},
+    cache:{duration:19.6,steps:cacheSteps,eyebrow:'缓存与物理流量 / MEMORY',title:'同一组读取，哪些数据可以复用？',label:'冷缓存和两个等大小 tile 容量下的 LRU 命中过程'},
+    pipeline:{duration:10,steps:pipelineSteps,eyebrow:'资源与依赖 / PIPELINE',title:'依赖决定串行，独立资源才可能重叠。',label:'两个 tile 的 QK、softmax、PV 依赖与资源重叠示意'}
   };
   function readouts(el,values) {const key=JSON.stringify(values);if(el.__values===key)return;el.__values=key;el.innerHTML=values.map(v=>`<div><small>${esc(v[0])}</small><strong>${esc(v[1])}${v[2]?`<em>${esc(v[2])}</em>`:''}</strong><span>${esc(v[3]||'')}</span></div>`).join('');}
   function computeDrawing(t,index) {
@@ -175,7 +175,7 @@
       else if(mode==='cache'){const v=cacheStates[index],average=Math.round((v.hits*100+v.misses*400)/(index+1));mount(svg,cacheDrawing(t,index));readouts(readout,[['累计命中',String(v.hits),` / ${index+1} 次读取`,index===7?'最终命中率 25%':'命中时复用已有数据'],['累计未命中',String(v.misses),' 次',`从 HBM 读入 ${v.misses} 个输入 tile`],['平均完整往返时间',String(average),' ns','按命中 / 未命中路径加权']]);}
       else{mount(svg,pipelineDrawing(t));readouts(readout,[['同一 tile 的依赖','QK → softmax → PV','','按依赖顺序执行'],['共享资源','Tensor 不重叠','','同一物理资源需要仲裁'],['总执行时间','Makespan','','满足资源与依赖的完成时间']]);}
     }});
-    function select(next){if(!kernelModes[next])return;mode=next;const meta=kernelModes[mode];document.querySelectorAll('[data-model]').forEach(b=>{const active=b.dataset.model===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});root.setAttribute('aria-labelledby',`tab-${mode}`);document.getElementById('kernel-eyebrow').textContent=meta.eyebrow;document.getElementById('kernel-title').textContent=meta.title;document.getElementById('kernel-source').textContent=meta.source;svg.setAttribute('aria-label',meta.label);root.dataset.mode=mode;buildSteps();clock.configure(meta);}
+    function select(next){if(!kernelModes[next])return;mode=next;const meta=kernelModes[mode];document.querySelectorAll('[data-model]').forEach(b=>{const active=b.dataset.model===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});root.setAttribute('aria-labelledby',`tab-${mode}`);document.getElementById('kernel-eyebrow').textContent=meta.eyebrow;document.getElementById('kernel-title').textContent=meta.title;svg.setAttribute('aria-label',meta.label);root.dataset.mode=mode;buildSteps();clock.configure(meta);}
     root.dataset.mode=mode;
     return {clock,select};
   }
