@@ -77,11 +77,14 @@
     empty.hidden = cases.length > 0; list.classList.toggle('case-grid', cases.length > 0);
     const safeAsset = value => typeof value === 'string' && (/^https:\/\//.test(value) || /^assets\/[a-zA-Z0-9/_.-]+$/.test(value));
     list.innerHTML = cases.map((item,index) => {
+      const study = window.SimCaseStudies?.[item.type];
+      if (study) return study.render(item, index);
       const metrics = Array.isArray(item.metrics) ? item.metrics : [];
       const sections = Array.isArray(item.sections) ? item.sections : [];
       const id = typeof item.id === 'string' && /^[a-zA-Z0-9-]+$/.test(item.id) ? item.id : `case-${index+1}`;
       return `<article class="case-card" id="${id}"><p class="micro-label">${escape(item.kicker || `CASE ${String(index+1).padStart(2,'0')}`)}</p><h3>${escape(item.title || '')}</h3><p>${escape(item.summary || '')}</p>${metrics.length?`<div class="case-metrics">${metrics.map(m=>`<div><strong>${escape(m.value)}</strong><span>${escape(m.label)}</span></div>`).join('')}</div>`:''}${sections.length?`<details><summary>查看问题、配置与分析</summary>${sections.map(s=>`<section class="case-detail"><h4>${escape(s.title || '')}</h4><p>${escape(s.body || '')}</p>${safeAsset(s.image)?`<img src="${escape(s.image)}" alt="${escape(s.alt || s.title || '')}" loading="lazy">`:''}</section>`).join('')}</details>`:''}</article>`;
     }).join('');
+    list.querySelectorAll('[data-case-type]').forEach(root => window.SimCaseStudies?.[root.dataset.caseType]?.mount(root));
   }
   caseList();
 
