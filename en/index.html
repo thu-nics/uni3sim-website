@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="NICS-EFC SysArch: system-level simulation of compute, interconnects, and memory for next-generation supernodes. Explore interpretable performance models and serving feedback through interactive diagrams.">
+  <title>System-Level Simulation for Next-Generation Supernodes · NICS-EFC SysArch</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../case-studies.css">
+  <script defer src="../data/i18n.js"></script>
+  <script defer src="../data/cases.js"></script>
+  <script defer src="../scripts/timeline.js"></script>
+  <script defer src="../scripts/figures.js"></script>
+  <script defer src="../scripts/case-studies.js"></script>
+  <script defer src="../scripts/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#background">Skip to background</a>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="wordmark" href="#top" aria-label="NICS-EFC SysArch home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16v16H8zM8 16h16M16 8v16"/><circle cx="8" cy="8" r="2.7"/><circle cx="24" cy="8" r="2.7"/><circle cx="8" cy="24" r="2.7"/><circle cx="24" cy="24" r="2.7"/></svg><span>NICS-EFC <b>SysArch</b></span></a>
+      <nav id="main-nav" aria-label="Page navigation"><a href="#background">Background</a><a href="#framework">Framework</a><a href="#modeling">Interactive diagrams</a><a href="#cases">Case studies</a><a href="#about">About <span aria-hidden="true">↗</span></a></nav>
+      <div class="header-actions"><a class="language-toggle" href="../" lang="zh-CN" hreflang="zh-CN" aria-label="切换到中文版"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.4"/><ellipse cx="10" cy="10" rx="3.2" ry="7.4"/><path d="M3 7.5h14M3 12.5h14"/></svg><span>中文</span></a><button class="menu-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button></div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas><div class="hero-wash" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="hero-eyebrow"><span class="status-dot"></span> NICS-EFC SYSARCH <span class="eyebrow-divider">/</span> RESEARCH OVERVIEW</p>
+        <h1>Next-Generation Supernodes:<br><span class="gradient-text">A System-Level Simulation Framework</span></h1>
+        <p class="hero-subtitle">Before building the system, understand how <span class="nowrap">compute, memory, and interconnects</span><br class="desktop-break"> together shape inference serving performance.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#background">Start with the background <span aria-hidden="true">↓</span></a><a class="button button-outline" href="#framework">Explore the framework <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="hero-figure" aria-label="System modeling connects compute, interconnects, and memory to inference serving"><svg id="hero-architecture" viewBox="0 0 1100 280" role="img" aria-labelledby="hero-diagram-title"><title id="hero-diagram-title">From compute, interconnects, and memory to unified system evaluation</title></svg></div>
+      <div class="hero-foot"><span>Interpretable performance models</span><i></i><span>Dynamic scheduling feedback</span><i></i><span>Multidimensional system evaluation</span></div>
+      <a class="scroll-cue" href="#background" aria-label="Read the background"><span>SCROLL TO EXPLORE</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></a>
+    </section>
+
+    <section id="background" class="section scale-section">
+      <div class="container">
+        <p class="eyebrow">01 / FROM CHIPS TO SYSTEMS</p>
+        <div class="section-heading"><h2>Growing compute demand<br> is becoming <span class="gradient-text">a system-level challenge.</span></h2><p class="section-lead">As models, contexts, and serving deployments grow, optimization expands from a single chip to coordinated supernodes and clusters.</p></div>
+        <div class="scale-demo interactive-figure" id="scale-demo" data-figure="scale">
+          <div class="stage-tabs scale-tabs" role="group" aria-label="Compute system scale">
+            <button type="button" data-step="0"><span class="step-number">01</span><strong>Single accelerator</strong><small>Use each chip efficiently</small><i></i></button>
+            <button type="button" data-step="1"><span class="step-number">02</span><strong>Multi-accelerator instance</strong><small>Coordinate compute and communication</small><i></i></button>
+            <button type="button" data-step="2"><span class="step-number">03</span><strong>Supernodes and clusters</strong><small>Coordinate resources across the system</small><i></i></button>
+          </div>
+          <div class="scale-body"><div class="diagram-scroll" tabindex="0" aria-label="Interactive system scale diagram; scroll horizontally"><svg class="scale-svg" viewBox="0 0 670 340" role="img" aria-label="Scaling from one accelerator to multiple accelerators, supernodes, and clusters"></svg></div><div class="scale-copy"><p class="micro-label">OPTIMIZATION FOCUS</p><h3 data-caption-title></h3><p data-caption-body></p><ul class="focus-list" data-focus-list></ul></div></div>
+          <div class="figure-bottom"><span class="figure-note">Illustrative system evolution · Layout and animation do not represent physical latency</span><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="Replay the system evolution animation">↺</button><button class="icon-button play-toggle" type="button" aria-label="Pause the system evolution animation" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenges" class="section dark-section">
+      <div class="container">
+        <p class="eyebrow">02 / SYSTEM DESIGN CONSTRAINTS</p>
+        <h2>Faster chips.<br>Does that mean a <span class="light-gradient">faster system?</span></h2>
+        <p class="section-lead">Beyond peak compute, capacity, bandwidth, interconnects, and the software stack determine the performance a system can deliver.</p>
+        <div class="constraint-layout">
+          <div class="constraint-options" role="group" aria-label="Explore system constraints">
+            <button type="button" data-constraint="memory" aria-pressed="true"><span>01</span><div><h3>The memory wall</h3><p>Larger models and longer contexts need both more capacity and fast enough data movement.</p></div><b aria-hidden="true">↗</b></button>
+            <button type="button" data-constraint="network" aria-pressed="false"><span>02</span><div><h3>The communication wall</h3><p>Interconnects determine how efficiently multiple accelerators can work together.</p></div><b aria-hidden="true">↗</b></button>
+            <button type="button" data-constraint="software" aria-pressed="false"><span>03</span><div><h3>Software and hardware diversity</h3><p>Compilers, kernels, and scheduling must turn hardware capabilities into effective performance.</p></div><b aria-hidden="true">↗</b></button>
+          </div>
+          <div class="constraint-visual"><svg id="constraint-diagram" viewBox="0 0 470 430" role="img" aria-label="System relationships among memory, compute, interconnects, and software"></svg><p id="constraint-caption" aria-live="polite">Capacity and bandwidth can both become constraints before data reaches the compute units.</p></div>
+        </div>
+        <div class="dark-insight"><span class="insight-symbol" aria-hidden="true">↳</span><p>The design space is expanding. Before building a system, we need to <strong>evaluate the impact of decisions across layers.</strong></p></div>
+      </div>
+    </section>
+
+    <section id="framework" class="section framework-section">
+      <div class="container">
+        <p class="eyebrow">03 / BRIDGING TWO GAPS</p>
+        <h2>From hardware capabilities<br> to <span class="gradient-text">actual serving behavior.</span></h2>
+        <p class="section-lead">The same operator can execute differently on different hardware. After modeling kernel time, we must also account for scheduling, host preparation, and resource contention.</p>
+        <div class="gap-summary"><div><span>GAP 01</span><h3>Hardware → Kernel</h3><p>Tiling, execution waves, caching, and concurrency shape actual execution.</p></div><div><span>GAP 02</span><h3>Kernel → Serving</h3><p>Completion events affect subsequent batching and request progress.</p></div></div>
+        <figure class="architecture-figure interactive-figure" id="framework-demo" data-figure="framework">
+          <div class="figure-heading"><span class="micro-label">SYSTEM-LEVEL MODELING / OVERVIEW</span><span class="small-tag">Completion-driven feedback</span></div>
+          <p class="diagram-hint">Swipe to explore the full diagram <span aria-hidden="true">↔</span></p>
+          <div class="diagram-scroll" tabindex="0" aria-label="Interactive modeling framework; scroll horizontally"><svg viewBox="0 0 1000 390" role="img" aria-label="Inputs pass through kernel modeling and system scheduling to produce serving metrics; completion events feed back to the scheduler"></svg></div>
+          <div class="stage-tabs compact-tabs" role="group" aria-label="System modeling stages"><button data-step="0" type="button"><span>01</span>Describe inputs<i></i></button><button data-step="1" type="button"><span>02</span>Model kernel time<i></i></button><button data-step="2" type="button"><span>03</span>Advance system state<i></i></button><button data-step="3" type="button"><span>04</span>Observe serving metrics<i></i></button></div>
+          <figcaption class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="Replay the framework animation">↺</button><button class="icon-button play-toggle" type="button" aria-label="Pause the framework animation" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="modeling" class="section modeling-section">
+      <div class="container">
+        <p class="eyebrow">04 / INTERPRETABLE PERFORMANCE MODELING</p>
+        <h2>How much compute? How much data?<br><span class="gradient-text">Every step has a physical meaning.</span></h2>
+        <p class="section-lead">Starting from operator shapes, kernel execution, and hardware information, analyze work, resource capacity, and dependencies to explain execution time.</p>
+        <div class="model-tabs segmented" role="tablist" aria-label="Choose a modeling diagram"><button id="tab-compute" role="tab" aria-selected="true" aria-controls="kernel-panel" data-model="compute" type="button">Compute and waves</button><button id="tab-cache" role="tab" aria-selected="false" aria-controls="kernel-panel" data-model="cache" tabindex="-1" type="button">Memory and caching</button><button id="tab-pipeline" role="tab" aria-selected="false" aria-controls="kernel-panel" data-model="pipeline" tabindex="-1" type="button">Resources and dependencies</button></div>
+        <div id="kernel-panel" role="tabpanel" aria-labelledby="tab-compute" class="kernel-panel interactive-figure" data-figure="kernel">
+          <div class="figure-heading"><div><span class="micro-label" id="kernel-eyebrow">COMPUTE WORK / COMPUTE</span><h3 id="kernel-title">How do 10 tasks map to 4 SMs?</h3></div><span class="small-tag" id="kernel-tag">Illustrative example</span></div>
+          <p class="diagram-hint">Swipe to explore the full diagram <span aria-hidden="true">↔</span></p>
+          <div class="diagram-scroll" tabindex="0" aria-label="Kernel modeling diagram; scroll horizontally"><svg viewBox="0 0 1000 350" role="img" id="kernel-diagram" aria-label="Tasks executing in waves"></svg></div>
+          <div class="kernel-readouts" id="kernel-readouts"></div>
+          <div class="kernel-step-row"><div class="mini-steps" role="group" aria-label="Modeling animation steps"></div><span class="step-counter" data-step-counter></span></div>
+          <div class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="Replay the kernel modeling animation">↺</button><button class="icon-button play-toggle" type="button" aria-label="Pause the kernel modeling animation" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></div>
+        </div>
+        <div class="model-principle"><span class="principle-mark" aria-hidden="true">∴</span><p>The modeling approach is shared. <strong>Resources, access granularity, and sources of concurrency still need architecture-specific descriptions and calibration.</strong></p></div>
+      </div>
+    </section>
+
+    <section id="serving" class="section serving-section">
+      <div class="container">
+        <p class="eyebrow">05 / PUTTING SCHEDULING BACK INTO THE SYSTEM</p>
+        <h2>The CPU prepares.<br>The device computes. <span class="gradient-text">Who is waiting?</span></h2>
+        <p class="section-lead">Preparing the next batch early can reduce device idle time while waiting for the CPU. Compute durations stay the same; the scheduling relationship changes.</p>
+        <figure class="serving-figure interactive-figure" id="serving-demo" data-figure="serving">
+          <div class="figure-heading"><span class="micro-label">THE SAME TWO BATCHES: A AND B</span><div class="figure-legend"><span><i class="key-cpu"></i>CPU preparation and submission</span><span><i class="key-device"></i>Device execution</span><span><i class="key-idle"></i>Wait</span></div></div>
+          <p class="diagram-hint">Swipe to explore the full diagram <span aria-hidden="true">↔</span></p>
+          <div class="diagram-scroll" tabindex="0" aria-label="Synchronous and asynchronous scheduling timelines; scroll horizontally"><svg viewBox="0 0 1000 420" role="img" aria-label="Depth 1 versus Depth 2: asynchronous preparation reduces device idle time; device execution remains serial"></svg></div>
+          <div class="stage-tabs compact-tabs" role="group" aria-label="Scheduling animation stages"><button data-step="0" type="button"><span>01</span>Prepare A<i></i></button><button data-step="1" type="button"><span>02</span>Compute and prepare<i></i></button><button data-step="2" type="button"><span>03</span>Compare idle time<i></i></button><button data-step="3" type="button"><span>04</span>Finish both batches<i></i></button></div>
+          <figcaption class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="Replay the asynchronous scheduling animation">↺</button><button class="icon-button play-toggle" type="button" aria-label="Pause the asynchronous scheduling animation" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></figcaption>
+        </figure>
+        <div class="metrics-row"><article><span>TTFT</span><h3>Time to first token</h3><p>From request arrival to the first visible output token.</p></article><article><span>TPOT</span><h3>Time per output token</h3><p>Time between the first and last output tokens ÷ (output token count − 1), for outputs longer than one token.</p></article><article><span>THROUGHPUT</span><h3>Output throughput</h3><p>Output tokens divided by elapsed time within the stated observation window.</p></article></div>
+      </div>
+    </section>
+
+    <section id="modules" class="section modules-section">
+      <div class="container">
+        <p class="eyebrow">06 / MULTIPLE MODELING PERSPECTIVES</p>
+        <div class="section-heading"><h2>Compute. Interconnects. Memory.<br><span class="gradient-text">Modeled within one system.</span></h2><p class="section-lead">Each module answers a different question, together supporting hardware–software co-evaluation.</p></div>
+        <div class="module-grid">
+          <article class="module-card"><div class="module-icon compute-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="17" y="17" width="30" height="30" rx="7"/><path d="M25 3v14M39 3v14M25 47v14M39 47v14M3 25h14M3 39h14M47 25h14M47 39h14"/><path d="M26 26h12v12H26z"/></svg></div><p class="micro-label">COMPUTE</p><h3>ArchPrism</h3><p>Connect operators, hardware resources, and inference serving to explain where performance comes from.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Compute work and effective resource capacity</li><li>Hierarchical traffic, concurrency, and resource dependencies</li><li>Kernel time and scheduling feedback</li></ul></details></article>
+          <article class="module-card"><div class="module-icon network-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M15 16 49 16 49 48 15 48Z M15 16l34 32M49 16 15 48"/><rect x="8" y="9" width="14" height="14" rx="4"/><rect x="42" y="9" width="14" height="14" rx="4"/><rect x="8" y="41" width="14" height="14" rx="4"/><rect x="42" y="41" width="14" height="14" rx="4"/></svg></div><p class="micro-label">INTERCONNECT</p><h3>ProtoBridge</h3><p>Make supernode interconnect protocol differences explicit through packet execution and dependencies.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Translation from communication operators to packets</li><li>Protocol parameters and packet dependencies</li><li>A shared packet execution module</li></ul></details></article>
+          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBF System Simulation</h3><p>Connect emerging memory devices and scheduling policies to real inference workloads.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Modular HBF device models</li><li>Capacity and data scheduling policies</li><li>Inference engine integration and system-level evaluation</li></ul></details></article>
+        </div>
+        <div class="research-direction"><div><span class="micro-label">MODEL AND EVALUATE</span><p>Understand the performance and bottlenecks of a given system design.</p></div><span class="direction-arrow" aria-hidden="true">→</span><div><span class="micro-label">FURTHER RESEARCH</span><p>Explore the system design space under multiple constraints.</p></div></div>
+      </div>
+    </section>
+
+    <section id="cases" class="section cases-section">
+      <div class="container">
+        <p class="eyebrow">07 / CASE STUDIES</p>
+        <div class="section-heading"><h2>Concrete questions.<br> <span class="gradient-text">System-level answers.</span></h2><p class="section-lead">Follow a design decision from its research question and configuration to execution and interpretation.</p></div>
+        <div id="case-list"></div>
+        <div class="cases-empty" id="cases-empty"><div class="case-outline" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div><p class="small-tag">More case studies to come</p><h3>The next design decision starts here.</h3><div class="case-method"><span><b>01</b> Question and hypothesis</span><span><b>02</b> System and comparison settings</span><span><b>03</b> Results and mechanisms</span></div></div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>Understanding the next generation of computing systems.</h2><p>A System-Level Simulation Framework for Next-Generation Supernodes</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p>Zhenhua Zhu · Xinhao Yang · Yu Zhu · Tianyu Liao · Tongxin Xie</p></div></div>
+        <footer><a class="footer-brand" href="#top">NICS-EFC <strong>SysArch</strong></a><p>COMPUTE · INTERCONNECTS · MEMORY · SYSTEMS</p><span>2026</span></footer>
+      </div>
+    </section>
+  </main>
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 12 5-5 5 5"/></svg></button>
+  <noscript><div class="noscript-note">JavaScript is disabled. The text remains readable, but interactive diagrams require JavaScript.</div></noscript>
+</body>
+</html>

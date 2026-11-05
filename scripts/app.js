@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const i18n = window.SimI18n, t = i18n.t;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const figures = window.SimFigures;
   figures.heroArchitecture();
@@ -36,14 +37,14 @@
   document.querySelectorAll('[data-constraint]').forEach(button => button.addEventListener('click', () => {
     const kind = button.dataset.constraint;
     document.querySelectorAll('[data-constraint]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    figures.constraint(kind); document.getElementById('constraint-caption').textContent = constraintCaptions[kind];
+    figures.constraint(kind); document.getElementById('constraint-caption').textContent = t(constraintCaptions[kind]);
   }));
 
   const menu = document.querySelector('.menu-toggle'), nav = document.getElementById('main-nav');
-  function closeMenu() { menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', '打开页面导航'); nav.classList.remove('is-open'); }
+  function closeMenu() { menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', t('打开页面导航')); nav.classList.remove('is-open'); }
   menu.addEventListener('click', () => {
     const open = menu.getAttribute('aria-expanded') !== 'true';
-    menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? '关闭页面导航' : '打开页面导航');
+    menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', t(open ? '关闭页面导航' : '打开页面导航'));
     nav.classList.toggle('is-open', open);
   });
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
@@ -76,17 +77,47 @@
     const list = document.getElementById('case-list'), empty = document.getElementById('cases-empty'), escape = figures.escape;
     empty.hidden = cases.length > 0; list.classList.toggle('case-grid', cases.length > 0);
     const safeAsset = value => typeof value === 'string' && (/^https:\/\//.test(value) || /^assets\/[a-zA-Z0-9/_.-]+$/.test(value));
-    list.innerHTML = cases.map((item,index) => {
+    list.innerHTML = i18n.html(cases.map((item,index) => {
       const study = window.SimCaseStudies?.[item.type];
       if (study) return study.render(item, index);
       const metrics = Array.isArray(item.metrics) ? item.metrics : [];
       const sections = Array.isArray(item.sections) ? item.sections : [];
       const id = typeof item.id === 'string' && /^[a-zA-Z0-9-]+$/.test(item.id) ? item.id : `case-${index+1}`;
       return `<article class="case-card" id="${id}"><p class="micro-label">${escape(item.kicker || `CASE ${String(index+1).padStart(2,'0')}`)}</p><h3>${escape(item.title || '')}</h3><p>${escape(item.summary || '')}</p>${metrics.length?`<div class="case-metrics">${metrics.map(m=>`<div><strong>${escape(m.value)}</strong><span>${escape(m.label)}</span></div>`).join('')}</div>`:''}${sections.length?`<details><summary>查看问题、配置与分析</summary>${sections.map(s=>`<section class="case-detail"><h4>${escape(s.title || '')}</h4><p>${escape(s.body || '')}</p>${safeAsset(s.image)?`<img src="${escape(s.image)}" alt="${escape(s.alt || s.title || '')}" loading="lazy">`:''}</section>`).join('')}</details>`:''}</article>`;
-    }).join('');
+    }).join(''));
     list.querySelectorAll('[data-case-type]').forEach(root => window.SimCaseStudies?.[root.dataset.caseType]?.mount(root));
   }
   caseList();
+
+  // Both languages use the same section IDs and figures; a language link keeps
+  // the reader in the section currently on screen, including within a case.
+  const languageLink = document.querySelector('.language-toggle');
+  function languageTarget() {
+    const target = new URL(location.href);
+    if (location.protocol === 'file:') {
+      target.searchParams.set('lang', i18n.lang === 'en' ? 'zh' : 'en');
+    } else {
+      target.searchParams.delete('lang');
+      const home = new URL(i18n.lang === 'en' ? '../' : './', location.href);
+      target.pathname = new URL(i18n.lang === 'en' ? './' : 'en/', home).pathname;
+    }
+    target.hash = location.hash;
+    return target;
+  }
+  function updateLanguageLink() { languageLink.href = languageTarget().href; }
+  languageLink.querySelector('span').textContent = i18n.lang === 'en' ? '中文' : 'English';
+  languageLink.lang = languageLink.hreflang = i18n.lang === 'en' ? 'zh-CN' : 'en';
+  languageLink.setAttribute('aria-label', i18n.lang === 'en' ? '切换到中文版' : 'Switch to English');
+  updateLanguageLink();
+  addEventListener('hashchange', updateLanguageLink);
+  languageLink.addEventListener('click', () => {
+    const target = languageTarget();
+    const sections = [...document.querySelectorAll('main section[id], .memory-case[id], .pool-settings[id]')];
+    const current = sections.filter(el => el.getBoundingClientRect().top <= innerHeight * .35 && el.getBoundingClientRect().bottom > 75).at(-1);
+    if (current) target.hash = current.id;
+    languageLink.href = target.href;
+  });
+  if (location.hash.endsWith('-settings')) document.getElementById(location.hash.slice(1))?.setAttribute('open', '');
 
   // Decorative background: a sparse fabric whose particles follow existing paths.
   const canvas = document.getElementById('hero-canvas'), hero = canvas.closest('section'), ctx = canvas.getContext('2d');

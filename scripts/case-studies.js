@@ -1,7 +1,8 @@
 /* Case renderers preserve source figures and use a separate schematic clock. */
 (() => {
+  const t = window.SimI18n.t;
   const e = value => window.SimFigures.escape(value);
-  const asset = name => window.SIM_INLINE_ASSETS?.[name] || name;
+  const asset = name => window.SIM_INLINE_ASSETS?.[name] || window.SimI18n.asset(name);
   const records = new Map();
   const center = 'text-anchor="middle"';
   const number = value => Number(value.toFixed(2));
@@ -68,7 +69,7 @@
     s+=label(x+w/2,y+20,name,10,colors[2],center);return s;
   }
   function scene(mode,t) {
-    let s=`<title>${mode==='sparse'?'稀疏 KV 读取与另一 batch 的四层执行交叠':'稠密 KV 访问中，未被计算覆盖的读取形成等待'}</title>`+drawArchitecture(t);
+    let s=`<title>${e(mode==='sparse'?'稀疏 KV 读取与另一 batch 的四层执行交叠':'稠密 KV 访问中，未被计算覆盖的读取形成等待')}</title>`+drawArchitecture(t);
     s+=label(30,225,mode==='sparse'?'跨 batch 执行与远端读取':'逐层读取与暴露的等待',11,'#aa98b5');
     for(const y of [258,326,394])s+=route(`M166 ${y}H971`,'#f0e9f5');
     if(mode==='sparse'){
@@ -95,7 +96,7 @@
     const flow=root.querySelector('.pool-flow-demo'),drawing=flow.querySelector('svg'),tabs=flow.querySelector('.stage-tabs');let mode='sparse',painted='';
     function stepsForMode(){const steps=mode==='sparse'?sparseSteps:denseSteps;tabs.innerHTML=steps.map((s,i)=>`<button type="button" data-step="${i}"><span>0${i+1}</span>${e(s.tab)}<i></i></button>`).join('');return steps;}
     const clock=new SimTimeline({root:flow,duration:16,steps:stepsForMode(),draw(t){const content=scene(mode,t);if(content!==painted){drawing.innerHTML=content;painted=content;}}});
-    root.querySelectorAll('[data-pool-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.poolMode;root.dataset.poolMode=mode;root.querySelectorAll('[data-pool-mode]').forEach(other=>other.setAttribute('aria-pressed',String(other===b)));flow.querySelector('[data-pool-flow-label]').textContent=mode==='sparse'?'稀疏索引 / 跨 BATCH 交叠':'稠密访问 / 读取可能暴露';drawing.setAttribute('aria-label',mode==='sparse'?'四层共用稀疏索引，读取可与另一 batch 的执行交叠':'稠密 KV 访问的简化关键路径；计算与读取可以部分交叠，数据未就绪会产生等待');clock.configure({duration:16,steps:stepsForMode()});}));
+    root.querySelectorAll('[data-pool-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.poolMode;root.dataset.poolMode=mode;root.querySelectorAll('[data-pool-mode]').forEach(other=>other.setAttribute('aria-pressed',String(other===b)));flow.querySelector('[data-pool-flow-label]').textContent=t(mode==='sparse'?'稀疏索引 / 跨 BATCH 交叠':'稠密访问 / 读取可能暴露');drawing.setAttribute('aria-label',t(mode==='sparse'?'四层共用稀疏索引，读取可与另一 batch 的执行交叠':'稠密 KV 访问的简化关键路径；计算与读取可以部分交叠，数据未就绪会产生等待'));clock.configure({duration:16,steps:stepsForMode()});}));
     root.dataset.poolMode='sparse';root.__caseClock=clock;
     root.querySelector(`.pool-nav a[href="#${root.id}-settings"]`)?.addEventListener('click',()=>{root.querySelector('.pool-settings').open=true;});
   }

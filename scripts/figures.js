@@ -1,20 +1,21 @@
 /* Native vector illustrations. Teaching examples use the supplied slide values. */
 (() => {
   const C = { ink:'#51465e', muted:'#a395b0', line:'#e3daee', purple:'#8b6db4', purpleDark:'#725298', pale:'#f3eef9', blue:'#86a6cb', bluePale:'#edf3fa', green:'#91a884', greenPale:'#edf3e8', amber:'#c6a46b', amberPale:'#faf3e6', white:'#fff' };
-  const esc = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const t = window.SimI18n.t;
+  const esc = value => t(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const clamp = n => Math.max(0, Math.min(1, n));
   const ease = n => { const p = clamp(n); return p * p * (3 - 2 * p); };
   const phase = (t, at, length = .6) => ease((t - at) / length);
   const fmt = n => Number(n.toFixed(2));
   const rect = (x,y,w,h,fill=C.white,stroke=C.line,r=10,attrs='') => `<rect x="${fmt(x)}" y="${fmt(y)}" width="${fmt(w)}" height="${fmt(h)}" rx="${r}" fill="${fill}" stroke="${stroke}" ${attrs}/>`;
-  const text = (x,y,value,size=13,color=C.ink,attrs='') => `<text x="${fmt(x)}" y="${fmt(y)}" font-size="${size}" fill="${color}" ${attrs}>${esc(value)}</text>`;
+  const text = (x,y,value,size=13,color=C.ink,attrs='',maxWidth) => `<text x="${fmt(x)}" y="${fmt(y)}" font-size="${window.SimI18n.fitText(value,size,maxWidth)}" fill="${color}" ${attrs}>${esc(value)}</text>`;
   const centered = 'text-anchor="middle"';
   const line = (x1,y1,x2,y2,color=C.line,attrs='') => `<path d="M${fmt(x1)} ${fmt(y1)}L${fmt(x2)} ${fmt(y2)}" fill="none" stroke="${color}" ${attrs}/>`;
   const path = (d,color=C.line,attrs='') => `<path d="${d}" fill="none" stroke="${color}" stroke-linecap="round" stroke-linejoin="round" ${attrs}/>`;
   const circle = (x,y,r,fill,attrs='') => `<circle cx="${fmt(x)}" cy="${fmt(y)}" r="${r}" fill="${fill}" ${attrs}/>`;
   const title = value => `<title>${esc(value)}</title>`;
   const mount = (el, html) => { if (el && el.__markup !== html) { el.innerHTML = html; el.__markup = html; } };
-  const pill = (x,y,w,value,fill=C.pale,color=C.purpleDark) => rect(x,y,w,25,fill,'none',12.5)+text(x+w/2,y+17,value,10,color,centered);
+  const pill = (x,y,w,value,fill=C.pale,color=C.purpleDark) => rect(x,y,w,25,fill,'none',12.5)+text(x+w/2,y+17,value,10,color,centered,w-14);
   function chip(x,y,size=44,active=false,label='') {
     let s=rect(x,y,size,size,active?C.pale:'#fff',active?'#ad96cc':C.line,8);
     s+=rect(x+size*.25,y+size*.25,size*.5,size*.5,active?'#d9cceb':'#f6f3f9','none',4);
@@ -56,7 +57,7 @@
     s+=path('M292 121H332M564 121H604','#cdbde0','stroke-width="1.4"');
     s+=circle(312,121,3,'#b29ac9')+circle(584,121,3,'#b29ac9');
     s+=path('M836 121H877Q894 121 894 137V153H928','#cdbde0','stroke-width="1.4"');
-    s+=rect(925,106,133,94,'#f4f0fa','#d8cae8',17)+text(991.5,143,'系统评估',17,'#806398',`${centered} font-weight="550"`)+text(991.5,166,'指标 · 时间线 · 瓶颈',9,'#a08cac',centered);
+    s+=rect(925,106,133,94,'#f4f0fa','#d8cae8',17)+text(991.5,143,'系统评估',17,'#806398',`${centered} font-weight="550"`)+text(991.5,166,'指标 · 时间线 · 瓶颈',9,'#a08cac',centered,119);
     s+=path('M176 237H719','#e7deef','stroke-width="1"')+text(447,262,'在同一系统中，理解跨层设计的影响',10,'#ad9dbb',centered);
     mount(el,s);
   }
@@ -99,7 +100,7 @@
     return new SimTimeline({root,duration:20,steps:frameworkSteps,draw(t,index){
       let s=title('计算模型与系统执行反馈框架');const xs=[22,268,514,760],w=218;
       const items=[{name:'输入描述',en:'INPUT',lines:['硬件规格与微基准','算子 / Kernel 执行方式','工作负载与部署配置']},{name:'算子性能模型',en:'KERNEL MODEL',lines:['计算工作量 F','各层流量 D 与并发 Q','资源能力与阶段依赖']},{name:'推理服务系统',en:'SERVING',lines:['原生调度与组批','CPU / Device 时间线','资源竞争与完成事件']},{name:'系统观测',en:'OBSERVATION',lines:['TTFT / TPOT','输出吞吐 / SLO goodput','利用率与瓶颈解释']}];
-      items.forEach((b,i)=>{const active=i===index;s+=rect(xs[i],65,w,202,active?'#fbf8ff':'#fff',active?'#b09acb':'#e7e0ef',15)+text(xs[i]+20,94,b.en,9,active?C.purple:'#b0a5ba','letter-spacing="1"')+text(xs[i]+20,124,b.name,20,active?C.purpleDark:C.ink,'font-weight="550"');b.lines.forEach((v,j)=>{s+=circle(xs[i]+22,160+j*31,2,active?'#b49acb':'#cfc4db')+text(xs[i]+34,164+j*31,v,12,'#93819f');});if(i<3){s+=line(xs[i]+w,166,xs[i+1],166,'#cfbfdf','stroke-width="1.4"')+path(`M${xs[i+1]-6} 162l6 4-6 4`,'#b9a1cd');if(index>i){const p=(t*.5)%1;s+=circle(xs[i]+w+28*p,166,3.4,'#a38abe');}}});
+      items.forEach((b,i)=>{const active=i===index;s+=rect(xs[i],65,w,202,active?'#fbf8ff':'#fff',active?'#b09acb':'#e7e0ef',15)+text(xs[i]+20,94,b.en,9,active?C.purple:'#b0a5ba','letter-spacing="1"')+text(xs[i]+20,124,b.name,20,active?C.purpleDark:C.ink,'font-weight="550"');b.lines.forEach((v,j)=>{s+=circle(xs[i]+22,160+j*31,2,active?'#b49acb':'#cfc4db')+text(xs[i]+34,164+j*31,v,12,'#93819f','',w-48);});if(i<3){s+=line(xs[i]+w,166,xs[i+1],166,'#cfbfdf','stroke-width="1.4"')+path(`M${xs[i+1]-6} 162l6 4-6 4`,'#b9a1cd');if(index>i){const p=(t*.5)%1;s+=circle(xs[i]+w+28*p,166,3.4,'#a38abe');}}});
       s+=path('M692 267V304Q692 318 678 318H552Q538 318 538 304V267','#b8a0d0','stroke-width="1.5" stroke-dasharray="4 5"');
       s+=path('M534 273l4-6 4 6','#ac91c8','stroke-width="1.4"');
       s+=text(615,344,'完成 / token / KV / 队列状态',10,'#a18bb1',centered);
@@ -175,7 +176,7 @@
       else if(mode==='cache'){const v=cacheStates[index],average=Math.round((v.hits*100+v.misses*400)/(index+1));mount(svg,cacheDrawing(t,index));readouts(readout,[['累计命中',String(v.hits),` / ${index+1} 次读取`,index===7?'最终命中率 25%':'命中时复用已有数据'],['累计未命中',String(v.misses),' 次',`从 HBM 读入 ${v.misses} 个输入 tile`],['平均完整往返时间',String(average),' ns','按命中 / 未命中路径加权']]);}
       else{mount(svg,pipelineDrawing(t));readouts(readout,[['同一 tile 的依赖','QK → softmax → PV','','按依赖顺序执行'],['共享资源','Tensor 不重叠','','同一物理资源需要仲裁'],['总执行时间','Makespan','','满足资源与依赖的完成时间']]);}
     }});
-    function select(next){if(!kernelModes[next])return;mode=next;const meta=kernelModes[mode];document.querySelectorAll('[data-model]').forEach(b=>{const active=b.dataset.model===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});root.setAttribute('aria-labelledby',`tab-${mode}`);document.getElementById('kernel-eyebrow').textContent=meta.eyebrow;document.getElementById('kernel-title').textContent=meta.title;svg.setAttribute('aria-label',meta.label);root.dataset.mode=mode;buildSteps();clock.configure(meta);}
+    function select(next){if(!kernelModes[next])return;mode=next;const meta=kernelModes[mode];document.querySelectorAll('[data-model]').forEach(b=>{const active=b.dataset.model===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});root.setAttribute('aria-labelledby',`tab-${mode}`);document.getElementById('kernel-eyebrow').textContent=t(meta.eyebrow);document.getElementById('kernel-title').textContent=t(meta.title);svg.setAttribute('aria-label',t(meta.label));root.dataset.mode=mode;buildSteps();clock.configure(meta);}
     root.dataset.mode=mode;
     return {clock,select};
   }

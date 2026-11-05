@@ -1,6 +1,7 @@
 /* A separate clock per figure. Drawing functions are deterministic in time. */
 (() => {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const t = window.SimI18n.t;
   class Timeline {
     constructor({ root, duration, steps, draw, stillTime }) {
       this.root = root; this.duration = duration; this.steps = steps; this.draw = draw;
@@ -52,8 +53,8 @@
         this.stage = index;
         const title = this.root.querySelector('[data-caption-title]');
         const body = this.root.querySelector('[data-caption-body]');
-        if (title && step.title) title.textContent = step.title;
-        if (body && step.body) body.textContent = step.body;
+        if (title && step.title) title.textContent = t(step.title);
+        if (body && step.body) body.textContent = t(step.body);
         const counter = this.root.querySelector('[data-step-counter]');
         if (counter) counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(this.steps.length).padStart(2, '0')}`;
       }
@@ -64,7 +65,7 @@
       if (!this.playButton) return;
       this.playButton.disabled = motion.matches;
       this.playButton.setAttribute('aria-pressed', String(!this.paused));
-      this.playButton.setAttribute('aria-label', motion.matches ? '减少动态效果已开启，可使用阶段按钮查看图解' : this.paused ? '播放动画' : '暂停动画');
+      this.playButton.setAttribute('aria-label', t(motion.matches ? '减少动态效果已开启，可使用阶段按钮查看图解' : this.paused ? '播放动画' : '暂停动画'));
       this.playButton.title = this.playButton.getAttribute('aria-label');
     }
     schedule() {
