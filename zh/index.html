@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="NICS-EFC SysArch：从计算、互连与存储，走向面向下一代超节点的系统级仿真。通过交互图解理解白盒建模和推理服务反馈。">
+  <title>面向下一代超节点的系统级仿真框架 · NICS-EFC SysArch</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../case-studies.css">
+  <script defer src="../data/i18n.js"></script>
+  <script defer src="../data/cases.js"></script>
+  <script defer src="../scripts/timeline.js"></script>
+  <script defer src="../scripts/figures.js"></script>
+  <script defer src="../scripts/case-studies.js"></script>
+  <script defer src="../scripts/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#background">跳转到背景介绍</a>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="wordmark" href="#top" aria-label="NICS-EFC SysArch 首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16v16H8zM8 16h16M16 8v16"/><circle cx="8" cy="8" r="2.7"/><circle cx="24" cy="8" r="2.7"/><circle cx="8" cy="24" r="2.7"/><circle cx="24" cy="24" r="2.7"/></svg><span>NICS-EFC <b>SysArch</b></span></a>
+      <nav id="main-nav" aria-label="页面导航"><a href="#background">背景与挑战</a><a href="#framework">建模框架</a><a href="#modeling">交互图解</a><a href="#cases">研究案例</a><a href="#about">关于研究 <span aria-hidden="true">↗</span></a></nav>
+      <div class="header-actions"><a class="language-toggle" href="../" lang="en" hreflang="en" aria-label="Switch to English"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.4"/><ellipse cx="10" cy="10" rx="3.2" ry="7.4"/><path d="M3 7.5h14M3 12.5h14"/></svg><span>English</span></a><button class="menu-toggle" aria-label="打开页面导航" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button></div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas><div class="hero-wash" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="hero-eyebrow"><span class="status-dot"></span> NICS-EFC SYSARCH <span class="eyebrow-divider">/</span> RESEARCH OVERVIEW</p>
+        <h1>面向下一代超节点的<br><span class="gradient-text">系统级仿真框架</span></h1>
+        <p class="hero-subtitle">在系统落地之前，理解<span class="nowrap">计算、存储与互连</span><br class="desktop-break">如何共同决定推理服务性能。</p>
+        <div class="hero-actions"><a class="button button-primary" href="#background">从背景开始 <span aria-hidden="true">↓</span></a><a class="button button-outline" href="#framework">探索仿真框架 <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="hero-figure" aria-label="计算、互连、存储通过系统建模连接到推理服务"><svg id="hero-architecture" viewBox="0 0 1100 280" role="img" aria-labelledby="hero-diagram-title"><title id="hero-diagram-title">从计算、互连和存储，到统一的系统评估</title></svg></div>
+      <div class="hero-foot"><span>可解释的性能建模</span><i></i><span>动态的调度反馈</span><i></i><span>多维的系统评估</span></div>
+      <a class="scroll-cue" href="#background" aria-label="阅读背景介绍"><span>SCROLL TO EXPLORE</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></a>
+    </section>
+
+    <section id="background" class="section scale-section">
+      <div class="container">
+        <p class="eyebrow">01 / 从芯片到系统</p>
+        <div class="section-heading"><h2>算力需求，<br>正在变成<span class="gradient-text">系统问题。</span></h2><p class="section-lead">模型、上下文与服务规模持续扩大。优化的对象，也从一颗芯片，走向多芯片协同的超节点与集群。</p></div>
+        <div class="scale-demo interactive-figure" id="scale-demo" data-figure="scale">
+          <div class="stage-tabs scale-tabs" role="group" aria-label="计算系统规模">
+            <button type="button" data-step="0"><span class="step-number">01</span><strong>单机单卡</strong><small>把单颗芯片用好</small><i></i></button>
+            <button type="button" data-step="1"><span class="step-number">02</span><strong>多卡实例</strong><small>让计算与通信协同</small><i></i></button>
+            <button type="button" data-step="2"><span class="step-number">03</span><strong>超节点与集群</strong><small>在系统中协调资源</small><i></i></button>
+          </div>
+          <div class="scale-body"><div class="diagram-scroll" tabindex="0" aria-label="系统规模交互图，可横向滚动"><svg class="scale-svg" viewBox="0 0 670 340" role="img" aria-label="单卡、多卡和超节点集群的规模变化"></svg></div><div class="scale-copy"><p class="micro-label">优化关注点</p><h3 data-caption-title></h3><p data-caption-body></p><ul class="focus-list" data-focus-list></ul></div></div>
+          <div class="figure-bottom"><span class="figure-note">计算系统演进示意 · 布局与动画不对应物理时延</span><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播系统演进动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停系统演进动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenges" class="section dark-section">
+      <div class="container">
+        <p class="eyebrow">02 / 系统设计的约束</p>
+        <h2>芯片更快，<br>系统就一定<span class="light-gradient">更快？</span></h2>
+        <p class="section-lead">峰值算力之外，容量、带宽、互连和软件栈，共同影响最终可用的系统性能。</p>
+        <div class="constraint-layout">
+          <div class="constraint-options" role="group" aria-label="查看不同系统约束">
+            <button type="button" data-constraint="memory" aria-pressed="true"><span>01</span><div><h3>访存墙</h3><p>模型与长上下文需要更多容量，也需要足够快的数据搬运。</p></div><b aria-hidden="true">↗</b></button>
+            <button type="button" data-constraint="network" aria-pressed="false"><span>02</span><div><h3>通信墙</h3><p>芯片之间的互连，决定多卡计算能否高效协同。</p></div><b aria-hidden="true">↗</b></button>
+            <button type="button" data-constraint="software" aria-pressed="false"><span>03</span><div><h3>软件与异构适配</h3><p>编译、算子与调度，需要把硬件能力转成有效性能。</p></div><b aria-hidden="true">↗</b></button>
+          </div>
+          <div class="constraint-visual"><svg id="constraint-diagram" viewBox="0 0 470 430" role="img" aria-label="存储、计算、互连与软件之间的系统关系"></svg><p id="constraint-caption" aria-live="polite">数据到达计算单元之前，容量与带宽都可能成为约束。</p></div>
+        </div>
+        <div class="dark-insight"><span class="insight-symbol" aria-hidden="true">↳</span><p>设计空间正在扩大。我们需要在构建系统之前，<strong>评估跨层选择带来的影响。</strong></p></div>
+      </div>
+    </section>
+
+    <section id="framework" class="section framework-section">
+      <div class="container">
+        <p class="eyebrow">03 / 连接两道鸿沟</p>
+        <h2>从硬件能力，<br>走到<span class="gradient-text">真实服务行为。</span></h2>
+        <p class="section-lead">同样的算子，在不同硬件上可能有不同的执行方式。算准 Kernel 时间后，还需要把调度、主机准备和资源竞争放回系统。</p>
+        <div class="gap-summary"><div><span>GAP 01</span><h3>硬件 → Kernel</h3><p>切块、波次、缓存与并发，改变实际执行。</p></div><div><span>GAP 02</span><h3>Kernel → Serving</h3><p>执行完成事件，改变后续组批与请求进度。</p></div></div>
+        <figure class="architecture-figure interactive-figure" id="framework-demo" data-figure="framework">
+          <div class="figure-heading"><span class="micro-label">系统级建模 / OVERVIEW</span><span class="small-tag">完成事件驱动反馈</span></div>
+          <p class="diagram-hint">左右滑动查看完整图解 <span aria-hidden="true">↔</span></p>
+          <div class="diagram-scroll" tabindex="0" aria-label="建模框架交互图，可横向滚动"><svg viewBox="0 0 1000 390" role="img" aria-label="输入经算子模型和系统调度得到服务指标，并将完成事件反馈给调度器"></svg></div>
+          <div class="stage-tabs compact-tabs" role="group" aria-label="系统建模阶段"><button data-step="0" type="button"><span>01</span>描述输入<i></i></button><button data-step="1" type="button"><span>02</span>求解算子时间<i></i></button><button data-step="2" type="button"><span>03</span>推进系统状态<i></i></button><button data-step="3" type="button"><span>04</span>观测服务指标<i></i></button></div>
+          <figcaption class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播建模框架动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停建模框架动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="modeling" class="section modeling-section">
+      <div class="container">
+        <p class="eyebrow">04 / 白盒性能建模</p>
+        <h2>算多少，搬多少。<br><span class="gradient-text">每一步都有物理含义。</span></h2>
+        <p class="section-lead">从算子形状、Kernel 执行方式和硬件信息出发，分析工作量、资源能力与依赖，再得到可解释的执行时间。</p>
+        <div class="model-tabs segmented" role="tablist" aria-label="选择建模图解"><button id="tab-compute" role="tab" aria-selected="true" aria-controls="kernel-panel" data-model="compute" type="button">计算与波次</button><button id="tab-cache" role="tab" aria-selected="false" aria-controls="kernel-panel" data-model="cache" tabindex="-1" type="button">访存与缓存</button><button id="tab-pipeline" role="tab" aria-selected="false" aria-controls="kernel-panel" data-model="pipeline" tabindex="-1" type="button">资源与依赖</button></div>
+        <div id="kernel-panel" role="tabpanel" aria-labelledby="tab-compute" class="kernel-panel interactive-figure" data-figure="kernel">
+          <div class="figure-heading"><div><span class="micro-label" id="kernel-eyebrow">计算工作量 / COMPUTE</span><h3 id="kernel-title">10 个任务，怎样分给 4 个 SM？</h3></div><span class="small-tag" id="kernel-tag">教学示例</span></div>
+          <p class="diagram-hint">左右滑动查看完整图解 <span aria-hidden="true">↔</span></p>
+          <div class="diagram-scroll" tabindex="0" aria-label="算子建模图解，可横向滚动"><svg viewBox="0 0 1000 350" role="img" id="kernel-diagram" aria-label="计算任务分波次执行示意"></svg></div>
+          <div class="kernel-readouts" id="kernel-readouts"></div>
+          <div class="kernel-step-row"><div class="mini-steps" role="group" aria-label="建模动画步骤"></div><span class="step-counter" data-step-counter></span></div>
+          <div class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播算子建模动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停算子建模动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></div>
+        </div>
+        <div class="model-principle"><span class="principle-mark" aria-hidden="true">∴</span><p>统一的是建模方法。<strong>不同架构的资源、访问粒度和并发来源，仍需分别描述与校准。</strong></p></div>
+      </div>
+    </section>
+
+    <section id="serving" class="section serving-section">
+      <div class="container">
+        <p class="eyebrow">05 / 把调度放回系统</p>
+        <h2>CPU 在准备，<br>Device 在计算。<span class="gradient-text">谁在等？</span></h2>
+        <p class="section-lead">提前准备下一批请求，可以减少设备等待 CPU 的空档。两批计算的时长保持相同，变化来自它们的调度关系。</p>
+        <figure class="serving-figure interactive-figure" id="serving-demo" data-figure="serving">
+          <div class="figure-heading"><span class="micro-label">同样的 A、B 两批工作</span><div class="figure-legend"><span><i class="key-cpu"></i>CPU 准备与提交</span><span><i class="key-device"></i>Device 计算</span><span><i class="key-idle"></i>等待</span></div></div>
+          <p class="diagram-hint">左右滑动查看完整图解 <span aria-hidden="true">↔</span></p>
+          <div class="diagram-scroll" tabindex="0" aria-label="同步与异步调度的双时间线，可横向滚动"><svg viewBox="0 0 1000 420" role="img" aria-label="Depth 1 与 Depth 2 对比，异步准备减少 Device 等待，Device 上两批计算仍串行"></svg></div>
+          <div class="stage-tabs compact-tabs" role="group" aria-label="调度动画阶段"><button data-step="0" type="button"><span>01</span>准备 A<i></i></button><button data-step="1" type="button"><span>02</span>计算与准备<i></i></button><button data-step="2" type="button"><span>03</span>等待的区别<i></i></button><button data-step="3" type="button"><span>04</span>完成两批<i></i></button></div>
+          <figcaption class="figure-bottom"><div class="figure-caption"><strong data-caption-title></strong><p data-caption-body></p></div><div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播异步调度动画">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停异步调度动画" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div></figcaption>
+        </figure>
+        <div class="metrics-row"><article><span>TTFT</span><h3>首 Token 延时</h3><p>从请求到达到首个有效输出 token 可见。</p></article><article><span>TPOT</span><h3>每 Token 生成间隔</h3><p>首末 token 间隔 ÷（输出 token 数 − 1），输出多于 1 个时适用。</p></article><article><span>THROUGHPUT</span><h3>输出吞吐</h3><p>声明的观测窗口内，输出 token 数与时间之比。</p></article></div>
+      </div>
+    </section>
+
+    <section id="modules" class="section modules-section">
+      <div class="container">
+        <p class="eyebrow">06 / 多维建模视角</p>
+        <div class="section-heading"><h2>计算、互连、存储。<br><span class="gradient-text">放进同一个系统。</span></h2><p class="section-lead">不同模块回答不同的问题，并共同服务于软硬件协同评估。</p></div>
+        <div class="module-grid">
+          <article class="module-card"><div class="module-icon compute-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="17" y="17" width="30" height="30" rx="7"/><path d="M25 3v14M39 3v14M25 47v14M39 47v14M3 25h14M3 39h14M47 25h14M47 39h14"/><path d="M26 26h12v12H26z"/></svg></div><p class="micro-label">COMPUTE</p><h3>ArchPrism</h3><p>连接算子、硬件资源与推理服务，解释性能从哪里来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>计算工作量与有效资源能力</li><li>分层流量、并发与资源依赖</li><li>Kernel 时间与调度反馈</li></ul></details></article>
+          <article class="module-card"><div class="module-icon network-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M15 16 49 16 49 48 15 48Z M15 16l34 32M49 16 15 48"/><rect x="8" y="9" width="14" height="14" rx="4"/><rect x="42" y="9" width="14" height="14" rx="4"/><rect x="8" y="41" width="14" height="14" rx="4"/><rect x="42" y="41" width="14" height="14" rx="4"/></svg></div><p class="micro-label">INTERCONNECT</p><h3>ProtoBridge</h3><p>让超节点互连协议的差异，在数据包执行与依赖中显式呈现。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>通信算子到数据包的转换</li><li>协议参数与数据包依赖</li><li>共享的数据包执行模块</li></ul></details></article>
+          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBF 系统仿真</h3><p>把新型存储设备、调度策略与真实推理工作负载连接起来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>模块化的 HBF 设备模型</li><li>容量与数据调度策略</li><li>推理引擎接入与系统级评估</li></ul></details></article>
+        </div>
+        <div class="research-direction"><div><span class="micro-label">建模评估</span><p>给定系统设计，理解性能与瓶颈。</p></div><span class="direction-arrow" aria-hidden="true">→</span><div><span class="micro-label">进一步的研究方向</span><p>在多维约束下，探索系统设计空间。</p></div></div>
+      </div>
+    </section>
+
+    <section id="cases" class="section cases-section">
+      <div class="container">
+        <p class="eyebrow">07 / 研究案例</p>
+        <div class="section-heading"><h2>让具体的问题，<br>得到<span class="gradient-text">系统的回答。</span></h2><p class="section-lead">围绕一个设计选择，连接问题、配置、执行过程与结果解释。</p></div>
+        <div id="case-list"></div>
+        <div class="cases-empty" id="cases-empty"><div class="case-outline" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div><p class="small-tag">案例内容即将更新</p><h3>下一个设计选择，从这里展开。</h3><div class="case-method"><span><b>01</b> 问题与假设</span><span><b>02</b> 系统与对比配置</span><span><b>03</b> 结果与机制解释</span></div></div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>一起理解，下一代计算系统。</h2><p>面向下一代超节点的系统级仿真框架</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p>朱振华 · 杨昕昊 · 朱昱 · 廖天羽 · 谢童欣</p></div></div>
+        <footer><a class="footer-brand" href="#top">NICS-EFC <strong>SysArch</strong></a><p>计算 · 互连 · 存储 · 系统</p><span>2026</span></footer>
+      </div>
+    </section>
+  </main>
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="回到页面顶部" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 12 5-5 5 5"/></svg></button>
+  <noscript><div class="noscript-note">当前浏览器未启用 JavaScript，交互图解不可播放；页面文字仍可阅读。</div></noscript>
+</body>
+</html>

@@ -98,8 +98,9 @@
       target.searchParams.set('lang', i18n.lang === 'en' ? 'zh' : 'en');
     } else {
       target.searchParams.delete('lang');
-      const home = new URL(i18n.lang === 'en' ? '../' : './', location.href);
-      target.pathname = new URL(i18n.lang === 'en' ? './' : 'en/', home).pathname;
+      const nestedLocale = /\/(?:en|zh)\/(?:index\.html)?$/.test(location.pathname);
+      const home = new URL(nestedLocale ? '../' : './', location.href);
+      target.pathname = new URL(i18n.lang === 'en' ? 'zh/' : './', home).pathname;
     }
     target.hash = location.hash;
     return target;

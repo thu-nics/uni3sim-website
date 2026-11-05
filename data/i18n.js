@@ -479,7 +479,8 @@
   }
 
   const requested = location.protocol === 'file:' ? new URLSearchParams(location.search).get('lang') : null;
-  const lang = requested === 'en' || requested === 'zh' ? requested : document.documentElement.lang.startsWith('en') ? 'en' : 'zh';
+  const defaultLang = document.documentElement.dataset.defaultLang || document.documentElement.lang;
+  const lang = requested === 'en' || requested === 'zh' ? requested : defaultLang.startsWith('en') ? 'en' : 'zh';
   const t = value => lang === 'en' ? english(value) : String(value);
   const attrs = ['aria-label', 'alt', 'title', 'content'];
   function apply(root) {
@@ -511,8 +512,8 @@
     }
     return Number(Math.min(size, size * width / Math.max(1, widths.get(key))).toFixed(2));
   }
-  const nestedEnglish = /\/en\/(?:index\.html)?$/.test(location.pathname);
-  const asset = name => nestedEnglish && !/^(?:data:|https?:)/.test(name) ? `../${name}` : name;
+  const nestedLocale = /\/(?:en|zh)\/(?:index\.html)?$/.test(location.pathname);
+  const asset = name => nestedLocale && !/^(?:data:|https?:)/.test(name) ? `../${name}` : name;
   window.SimI18n = {lang, t, html, apply, asset, fitText, missing};
   document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
   apply(document);

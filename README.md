@@ -2,16 +2,17 @@
 
 NICS-EFC SysArch 的研究背景与交互图解。
 
-[中文版](https://hazuyuki.github.io/supernode-system-simulator/) · [English](https://hazuyuki.github.io/supernode-system-simulator/en/)
+[English (default)](https://hazuyuki.github.io/supernode-system-simulator/) · [中文版](https://hazuyuki.github.io/supernode-system-simulator/zh/)
 
-导航栏右侧提供 English / 中文切换，并保留当前阅读章节。正文、案例说明、动画阶段、图内文字和无障碍标签均支持两种语言。
+主网址默认英文，导航栏右侧提供 English / 中文切换，并保留当前阅读章节。正文、案例说明、动画阶段、图内文字和无障碍标签均支持两种语言。
 
 网页围绕超节点的系统设计需求、计算/互连/存储约束、可解释性能建模与推理服务调度展开。包含任务波次、LRU 缓存与异步调度的交互图解。
 
 ## 文件结构
 
-- `index.html`：中文内容与章节结构。
-- `en/index.html`：英文入口，与中文共用代码和图表资产。
+- `index.html`：默认英文页。
+- `zh/index.html`：中文页，与英文共用代码和图表资产。
+- `en/index.html`：保留的英文入口。
 - `data/i18n.js`：英文文案与语言辅助函数。
 - `styles.css`：桌面和移动端样式。
 - `scripts/timeline.js`：独立时间轴、暂停、重播与阶段定位。
