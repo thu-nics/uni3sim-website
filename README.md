@@ -15,7 +15,7 @@ NICS-EFC SysArch 的研究背景与交互图解。
 - `scripts/app.js`：页面交互、导航和 Canvas 背景。
 - `data/cases.js`：案例数据，已包含 scale-up memory pool 的结果与分析。
 - `scripts/case-studies.js`、`case-studies.css`：案例版式与交互图解。
-- `assets/cases/memory-pool/`：服务前沿、敏感性和算子时间线。
+- `assets/cases/memory-pool/`：三模型服务前沿和算子时间线。
 
 ## 更新与部署
 
