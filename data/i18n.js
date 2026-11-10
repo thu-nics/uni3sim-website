@@ -128,6 +128,8 @@
     '一起理解，下一代计算系统。': 'Understanding the next generation of computing systems.',
     '面向下一代超节点的系统级仿真框架': 'A System-Level Simulation Framework for Next-Generation Supernodes',
     '朱振华 · 杨昕昊 · 朱昱 · 廖天羽 · 谢童欣': 'Zhenhua\u00a0Zhu · Xinhao\u00a0Yang · Yu\u00a0Zhu · Tianyu\u00a0Liao · Tongxin\u00a0Xie',
+    '朱振华 · 杨昕昊 · 朱昱': 'Zhenhua Zhu · Xinhao Yang · Yu Zhu',
+    '廖天羽 · 谢童欣': 'Tianyu Liao · Tongxin Xie',
     '计算 · 互连 · 存储 · 系统': 'COMPUTE · INTERCONNECTS · MEMORY · SYSTEMS',
     '当前浏览器未启用 JavaScript，交互图解不可播放；页面文字仍可阅读。': 'JavaScript is disabled. The text remains readable, but interactive diagrams require JavaScript.',
     'NICS-EFC SysArch 首页': 'NICS-EFC SysArch home',

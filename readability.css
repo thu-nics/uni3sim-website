@@ -38,10 +38,19 @@ html[lang=en] .compact-tabs button{font-size:12px}
 .metrics-row article>span{font-size:12px}
 .about-top>div>p:not(.eyebrow){font-size:13px}
 .team-signature p{font-size:12px!important;color:var(--reading-secondary)!important}
-html[lang=en] .team-signature p{max-width:none;text-wrap:balance}
+html[lang] .team-signature p{max-width:none}
+.team-signature .team-authors{display:flex;align-items:baseline;justify-content:flex-end;gap:.55em;white-space:normal}
+.team-signature .author-group{display:inline-block;margin:0;font:inherit;color:inherit;white-space:nowrap}
+.team-signature .author-group+.author-group::before{content:"·";margin-right:.55em}
 @media(min-width:1000px){
   html[lang=en] .about-top{grid-template-columns:minmax(0,1.4fr) max-content}
-  html[lang=en] .team-signature p{white-space:nowrap}
+}
+@media(max-width:999px){
+  .team-signature .team-authors{flex-direction:column;align-items:flex-end;gap:2px}
+  .team-signature .author-group+.author-group::before{content:none}
+}
+@media(max-width:600px){
+  .team-signature .team-authors{align-items:flex-start}
 }
 footer p,footer>span,.footer-brand{font-size:11px}
 .language-toggle{font-size:12px;color:#654b7e}
