@@ -15,6 +15,7 @@ NICS-EFC SysArch 的研究背景与交互图解。
 - `en/index.html`：保留的英文入口。
 - `data/i18n.js`：英文文案与语言辅助函数。
 - `styles.css`：桌面和移动端样式。
+- `readability.css`：正文、图注及移动端的字号和对比度调整。
 - `scripts/timeline.js`：独立时间轴、暂停、重播与阶段定位。
 - `scripts/figures.js`：SVG 机制图与教学示例。
 - `scripts/app.js`：页面交互、导航和 Canvas 背景。

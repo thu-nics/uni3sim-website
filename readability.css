@@ -1,0 +1,144 @@
+/* Modest type and contrast adjustments, shared by both language versions. */
+:root{--muted:#5d5665;--soft:#71667b;--reading-secondary:#685d74;--reading-green:#426c59}
+body{font-size:18px}
+.hero-subtitle{color:#5e5668}
+.section-heading .section-lead,html[lang=en] .section-heading .section-lead{font-size:19px}
+.hero-eyebrow,.hero-foot,.micro-label,.small-tag,.scale-tabs small,.focus-list li,
+.figure-note,.figure-caption p,.kernel-readouts small,.kernel-readouts span,
+.kernel-readouts strong em,.step-counter,.figure-legend,.metrics-row article>span,
+.module-card summary,.module-card li,.research-direction p,.about-top>div>p:not(.eyebrow),
+.footer-brand,footer,.pool-nav,.pool-nav a span,.pool-legend,.pool-placement,
+.pool-placement>b,.pool-section .micro-label,.pool-settings-body,.pool-takeaways p,
+.pool-operator-detail summary,.pool-settings summary,.diagram-hint{color:var(--reading-secondary)}
+.scale-copy>p:not(.micro-label),.gap-summary p,.metrics-row p,.module-card>p:not(.micro-label),
+.model-principle p,.pool-header>p,.pool-section-title p,.pool-flow-intro{color:var(--muted)}
+.micro-label,.hero-foot,.figure-note,.small-tag,.kernel-readouts span{font-size:12px}
+.hero-eyebrow{font-size:11px}
+.scale-copy>p:not(.micro-label){font-size:16px}
+.focus-list li{font-size:13px}
+.scale-tabs small,html[lang=en] .scale-tabs small{font-size:13px}
+html[lang=en] .scale-tabs strong{font-size:16px}
+.stage-tabs button,.segmented button{color:var(--reading-secondary)}
+.figure-caption strong{font-size:16px}
+.figure-caption p{font-size:14px;line-height:1.8}
+.figure-heading,.figure-legend{flex-wrap:wrap;row-gap:10px}
+.figure-legend{font-size:12px}
+.compact-tabs button{font-size:13px;white-space:normal;line-height:1.65}
+html[lang=en] .compact-tabs button{font-size:12px}
+.compact-tabs button span,.stage-tabs .step-number{font-size:11px;opacity:1}
+.kernel-readouts>div{min-width:0}
+.kernel-readouts small{font-size:12px}
+.kernel-readouts strong em{font-size:13px}
+.step-counter{font-size:11px}
+.gap-summary p,.model-principle p,.research-direction p{font-size:15px}
+.model-principle strong{font-weight:500;color:#544461}
+.module-card>p:not(.micro-label){font-size:16px}
+.module-card summary,.module-card li{font-size:13px}
+.metrics-row p{font-size:14px}
+.metrics-row article>span{font-size:12px}
+.about-top>div>p:not(.eyebrow){font-size:13px}
+.team-signature p{font-size:12px!important;color:var(--reading-secondary)!important}
+footer p,footer>span,.footer-brand{font-size:11px}
+.language-toggle{font-size:12px;color:#654b7e}
+.site-header nav a{color:#534b5e}
+.dark-section .section-lead{color:#c1bacd}
+.constraint-options>button>span,.constraint-visual p,.dark-insight p{color:#bdb4ca}
+.constraint-options p{font-size:15px;color:#b6afc1}
+.constraint-options>button[aria-pressed=true] p{color:#d0c5df}
+.constraint-visual p{font-size:14px}
+.dark-insight p{font-size:18px}
+
+.memory-case{--pool:#386e5c;--pool-dark:#2f5e50}
+.pool-kicker,.pool-metrics span,.pool-metrics small,.pool-badges span,
+.pool-placement .has-pool,.pool-placement em,.pool-takeaways b{color:var(--reading-green)}
+.pool-header>p{font-size:17px}
+.pool-kicker{font-size:12px}
+.pool-badges span{font-size:12px}
+.pool-metrics span{font-size:14px;line-height:1.65}
+.pool-metrics small{font-size:12px;line-height:1.7}
+.pool-nav{font-size:13px}
+.pool-nav a span{font-size:11px}
+.pool-section-title p{font-size:15px;line-height:1.85}
+.pool-legend,.pool-flow-demo .figure-legend{font-size:12px}
+.pool-flow-intro{font-size:16px}
+.pool-flow-intro strong{font-weight:600;color:#52405f}
+.pool-placement{font-size:13px}
+.pool-placement>b{font-size:12px}
+.pool-mode-buttons button{font-size:14px}
+.pool-mode-buttons button[aria-pressed=false]{color:var(--reading-secondary)}
+.pool-operator-detail summary,.pool-settings summary{font-size:14px}
+.pool-settings-body,.pool-settings-grid p,.pool-settings .metric-definition{font-size:14px}
+.pool-settings-grid h5{font-size:15px;color:#604874}
+.pool-settings table{font-size:13px}
+.pool-settings th{color:#604874}
+.pool-settings code{font-size:12px;color:#604874}
+.pool-takeaways b{font-size:14px}
+.pool-takeaways p{font-size:13px}
+
+/* Keep dense figure labels at a readable scale inside their existing scrollers. */
+#framework-demo .diagram-scroll svg,#kernel-panel .diagram-scroll svg,
+#serving-demo .diagram-scroll svg,.pool-flow-demo .diagram-scroll svg{min-width:960px}
+.pool-comparison-scroll img{min-width:960px}
+.pool-operator-detail img{min-width:1000px}
+
+@media(min-width:1000px){.site-header nav a{font-size:13px}}
+@media(max-width:650px){
+  .pool-header>p{font-size:15px}
+  .pool-kicker,.pool-badges span{font-size:10px}
+  .pool-metrics span,html[lang=en] .pool-metrics span{font-size:11px}
+  .pool-metrics small,html[lang=en] .pool-metrics small{font-size:10px}
+  .pool-nav,html[lang=en] .pool-nav{font-size:11px;gap:12px 18px}
+  .pool-nav a span{font-size:9px}
+  .pool-section-title p{font-size:14px}
+  .pool-flow-intro{font-size:14px}
+  .pool-legend,.pool-flow-demo .figure-legend{font-size:10px}
+  .pool-placement{font-size:11px}
+  .pool-placement>b{font-size:10px}
+  .pool-mode-buttons button{font-size:12px}
+  .pool-flow-demo .compact-tabs button{font-size:11px}
+  .pool-operator-detail summary,.pool-settings summary{font-size:13px}
+  .pool-settings-body,.pool-settings-grid p,.pool-settings .metric-definition{font-size:13px}
+  .pool-settings-grid h5{font-size:14px}
+  .pool-settings table{font-size:12px}
+  .pool-settings code{font-size:11px}
+  .pool-takeaways b,html[lang=en] .pool-takeaways b{font-size:13px}
+  .pool-takeaways p,html[lang=en] .pool-takeaways p{font-size:12px}
+}
+@media(max-width:600px){
+  .hero-subtitle,html[lang=en] .hero-subtitle{font-size:15px}
+  .hero-eyebrow{font-size:9px}
+  .hero-foot,html[lang=en] .hero-foot{font-size:10px}
+  .site-header nav a{font-size:14px}
+  .language-toggle{font-size:11px}
+  .section-lead,.section-heading .section-lead,html[lang=en] .section-heading .section-lead{font-size:16px}
+  .micro-label,.small-tag,html[lang=en] .figure-heading .small-tag{font-size:10px}
+  .scale-tabs small{font-size:11px}
+  html[lang=en] .scale-tabs strong{font-size:12px}
+  html[lang=en] .scale-tabs small{font-size:10px}
+  .scale-copy>p:not(.micro-label){font-size:15px}
+  .focus-list li{font-size:12px}
+  .figure-note{font-size:11px}
+  .figure-caption strong{font-size:14px}
+  .figure-caption p{font-size:13px}
+  .compact-tabs button,html[lang=en] .compact-tabs button{font-size:11px}
+  .compact-tabs button span,.stage-tabs .step-number{font-size:9px}
+  .model-tabs button,html[lang=en] .model-tabs button{font-size:12px}
+  .kernel-readouts small{font-size:10px}
+  .kernel-readouts strong{font-size:19px}
+  .kernel-readouts strong em{font-size:10px}
+  .kernel-readouts span{font-size:11px}
+  .step-counter{font-size:10px}
+  .figure-legend{font-size:10px}
+  .constraint-options p{font-size:14px}
+  .constraint-visual p{font-size:13px}
+  .dark-insight p{font-size:15px}
+  .gap-summary p,.model-principle p,.research-direction p{font-size:13px}
+  .module-card>p:not(.micro-label){font-size:15px}
+  .module-card summary,.module-card li,.metrics-row p{font-size:13px}
+  .metrics-row article>span{font-size:10px}
+  .about-top>div>p:not(.eyebrow){font-size:12px}
+  .team-signature p{font-size:11px!important}
+  footer p,footer>span,.footer-brand{font-size:10px}
+  .diagram-hint{font-size:10px;color:var(--reading-secondary)}
+  .scale-body .scale-svg{min-width:620px!important}
+}

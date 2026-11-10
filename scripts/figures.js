@@ -7,8 +7,28 @@
   const ease = n => { const p = clamp(n); return p * p * (3 - 2 * p); };
   const phase = (t, at, length = .6) => ease((t - at) / length);
   const fmt = n => Number(n.toFixed(2));
+  const labelColors = new Map();
+  const luminance = rgb => rgb.map(v=>{const c=v/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;}).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
+  function diagramColor(color,onDark=false) {
+    const key=`${onDark}:${color}`;
+    if(labelColors.has(key))return labelColors.get(key);
+    let hex=color.replace(/^#/,'');if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');
+    if(!/^[0-9a-f]{6}$/i.test(hex))return color;
+    const rgb=[0,2,4].map(i=>parseInt(hex.slice(i,i+2),16));
+    const background=luminance(onDark?[52,44,66]:[255,255,255]);
+    const contrast=value=>{const l=luminance(value);return (Math.max(l,background)+.05)/(Math.min(l,background)+.05);};
+    let result=rgb;
+    if(contrast(rgb)<5.2){
+      const target=onDark?[244,237,251]:[45,36,56];let low=0,high=1;
+      for(let i=0;i<14;i++){const mix=(low+high)/2,candidate=rgb.map((v,j)=>Math.round(v+(target[j]-v)*mix));if(contrast(candidate)<5.2)low=mix;else high=mix;}
+      result=rgb.map((v,j)=>Math.round(v+(target[j]-v)*high));
+    }
+    const value='#'+result.map(v=>v.toString(16).padStart(2,'0')).join('');labelColors.set(key,value);return value;
+  }
+  const diagramSize=(size,onDark=false)=>size>=20?size:Math.max(onDark?12:11,size+1);
   const rect = (x,y,w,h,fill=C.white,stroke=C.line,r=10,attrs='') => `<rect x="${fmt(x)}" y="${fmt(y)}" width="${fmt(w)}" height="${fmt(h)}" rx="${r}" fill="${fill}" stroke="${stroke}" ${attrs}/>`;
-  const text = (x,y,value,size=13,color=C.ink,attrs='',maxWidth) => `<text x="${fmt(x)}" y="${fmt(y)}" font-size="${window.SimI18n.fitText(value,size,maxWidth)}" fill="${color}" ${attrs}>${esc(value)}</text>`;
+  const text = (x,y,value,size=13,color=C.ink,attrs='',maxWidth,onDark=false) => `<text x="${fmt(x)}" y="${fmt(y)}" font-size="${window.SimI18n.fitText(value,diagramSize(size,onDark),maxWidth)}" fill="${diagramColor(color,onDark)}" ${attrs}>${esc(value)}</text>`;
+  const darkText = (x,y,value,size=13,color=C.ink,attrs='',maxWidth) => text(x,y,value,size,color,attrs,maxWidth,true);
   const centered = 'text-anchor="middle"';
   const line = (x1,y1,x2,y2,color=C.line,attrs='') => `<path d="M${fmt(x1)} ${fmt(y1)}L${fmt(x2)} ${fmt(y2)}" fill="none" stroke="${color}" ${attrs}/>`;
   const path = (d,color=C.line,attrs='') => `<path d="${d}" fill="none" stroke="${color}" stroke-linecap="round" stroke-linejoin="round" ${attrs}/>`;
@@ -83,10 +103,10 @@
     const locations={memory:{x:235,y:67,label:'存储层次',sub:'容量 · 带宽'},network:{x:370,y:294,label:'互连系统',sub:'协议 · 拓扑'},software:{x:100,y:294,label:'软件栈',sub:'编译 · 调度'}};
     let s=title('计算系统中的存储、互连和软件约束');
     s+=`<defs><radialGradient id="dark-glow"><stop stop-color="#9f7ad2" stop-opacity=".12"/><stop offset="1" stop-color="#9f7ad2" stop-opacity="0"/></radialGradient></defs><circle cx="235" cy="215" r="180" fill="url(#dark-glow)"/>`;
-    for(const [key,p] of Object.entries(locations)){const active=kind===key;s+=path(`M235 211Q${p.x} 211 ${p.x} ${p.y}`,active?'#b093d6':'#4b4256',`stroke-width="${active?2:1}" stroke-dasharray="${active?'4 6':'3 8'}"`);s+=circle(p.x,p.y,44,active?'#342c42':'#26232b',`stroke="${active?'#9476b6':'#514358'}"`)+text(p.x,p.y+1,p.label,13,active?'#d5c0ef':'#aaa0b7',`${centered} font-weight="550"`)+text(p.x,p.y+19,p.sub,9,active?'#ad95c6':'#73697e',centered);}
-    s+=rect(179,155,112,112,'#30283b','#8c72ab',25)+rect(203,179,64,64,'#3d304c','#9e80bd',14)+text(235,216,'计算',23,'#d5c4eb',`${centered} font-weight="550"`);
+    for(const [key,p] of Object.entries(locations)){const active=kind===key;s+=path(`M235 211Q${p.x} 211 ${p.x} ${p.y}`,active?'#b093d6':'#4b4256',`stroke-width="${active?2:1}" stroke-dasharray="${active?'4 6':'3 8'}"`);s+=circle(p.x,p.y,44,active?'#342c42':'#26232b',`stroke="${active?'#9476b6':'#514358'}"`)+darkText(p.x,p.y+1,p.label,13,active?'#d5c0ef':'#aaa0b7',`${centered} font-weight="550"`)+darkText(p.x,p.y+19,p.sub,9,active?'#ad95c6':'#73697e',centered);}
+    s+=rect(179,155,112,112,'#30283b','#8c72ab',25)+rect(203,179,64,64,'#3d304c','#9e80bd',14)+darkText(235,216,'计算',23,'#d5c4eb',`${centered} font-weight="550"`);
     for(let i=0;i<4;i++){s+=line(170,174+i*25,179,174+i*25,'#806894')+line(291,174+i*25,300,174+i*25,'#806894');}
-    s+=text(235,389,'有效性能来自整个系统的协同',11,'#7f6d90',centered);
+    s+=darkText(235,389,'有效性能来自整个系统的协同',11,'#7f6d90',centered);
     mount(svg,s);
   }
   const frameworkSteps=[
@@ -198,5 +218,5 @@
       mount(svg,s);
     }});
   }
-  window.SimFigures={heroArchitecture,scale,constraint,framework,kernel,serving,escape:esc};
+  window.SimFigures={heroArchitecture,scale,constraint,framework,kernel,serving,escape:esc,diagramColor,diagramSize};
 })();

@@ -13,6 +13,12 @@
   };
   // Retain figure controllers for future case modules and precise inspection.
   window.SimulatorPage = { figures: clocks, version: '0.1.0' };
+  const scaleViewport = document.querySelector('#scale-demo .diagram-scroll');
+  function centerScaleDiagram() {
+    scaleViewport.scrollLeft = matchMedia('(max-width:600px)').matches ? (scaleViewport.scrollWidth-scaleViewport.clientWidth)/2 : 0;
+  }
+  centerScaleDiagram();
+  addEventListener('resize', centerScaleDiagram, {passive:true});
 
   const tabButtons = [...document.querySelectorAll('[data-model]')];
   tabButtons.forEach((button, index) => {
