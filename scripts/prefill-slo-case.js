@@ -62,8 +62,8 @@
     s+=text(888,29,'窗口均值',13,C.ink,`${center} font-weight="600"`,190);
     for(const value of [0,50,100])s+=text(787,y(value)+4,`${value}`,10,C.muted,'text-anchor="end"');
     s+=path('M799 306H974','#d7cddd');
-    [['p','P 池','16 GPU',C.p],['d','D 池','8 GPU',C.d],['all','全部','24 GPU','#968aa2']].forEach(([key,name,count,color],i)=>{
-      const bx=808+i*59,bh=data.means[key]*h/100;
+    [['p','P 池','16 GPU',C.p],['d','D 池','8 GPU',C.d]].forEach(([key,name,count,color],i)=>{
+      const bx=832+i*74,bh=data.means[key]*h/100;
       s+=rect(bx,306-bh,36,bh,color,'none',3)+text(bx+18,298-bh,pct(data.means[key]),12,C.ink,`${center} font-weight="600"`,58)+text(bx+18,329,name,11,C.muted,center,58)+text(bx+18,349,count,10,C.muted,center);
     });
     s+=text(889,376,'时间与 GPU 数加权',10,C.muted,center,200);
