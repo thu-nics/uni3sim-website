@@ -4,7 +4,7 @@
 .slo-header>p:not(.slo-kicker){font-size:17px;line-height:1.9;color:var(--muted);max-width:890px;margin-top:18px}
 .slo-badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
 .slo-badges span{font-size:12px;padding:5px 10px;background:#f5f0fa;border:1px solid #e7ddef;border-radius:6px;color:#69537c}
-.slo-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:30px;padding:26px 10px;border:1px solid #e4daed;background:linear-gradient(115deg,#fbf8fe,#fff);border-radius:20px}
+.slo-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:30px;padding:26px 10px;border:1px solid #e4daed;background:linear-gradient(115deg,#fbf8fe,#fff);border-radius:20px}
 .slo-metrics>div{padding:0 20px;text-align:center;min-width:0}
 .slo-metrics>div+div{border-left:1px solid #e8dff0}
 .slo-metrics strong{display:block;font-size:36px;font-weight:600;letter-spacing:-.04em;color:#695080;line-height:1.2}
@@ -28,7 +28,7 @@
 .slo-chart-scroll svg{touch-action:pan-x pan-y}
 .slo-scrubber{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;font-size:13px;color:#685d74;margin-top:12px}
 .slo-scrubber input{width:100%;min-width:0;accent-color:#725298;cursor:pointer}
-.slo-bin-readout{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:12px;margin-top:17px;padding:16px 12px;background:#faf7fc;border-radius:12px}
+.slo-bin-readout{display:grid;grid-template-columns:1.4fr repeat(2,minmax(0,1fr));gap:12px;margin-top:17px;padding:16px 12px;background:#faf7fc;border-radius:12px}
 .slo-bin-readout>div{text-align:center;min-width:0}
 .slo-bin-readout small{font-size:12px;display:block;color:#746980}
 .slo-bin-readout strong{font-size:19px;font-weight:550;display:block;color:#655076;margin-top:5px;font-variant-numeric:tabular-nums}
@@ -46,7 +46,7 @@
 .slo-settings-body h5{font-size:15px;color:#5f4574;margin-bottom:9px;font-weight:550}
 .slo-settings-body p+p{margin-top:8px}
 .slo-settings-body .slo-scope{grid-column:1/-1}
-@media(max-width:850px){.slo-section-heading{align-items:flex-start;flex-direction:column;gap:16px}.slo-section-heading>p{flex-basis:auto;max-width:640px}.slo-metrics>div{padding:0 10px}.slo-metrics strong{font-size:31px}.slo-bin-readout{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:850px){.slo-section-heading{align-items:flex-start;flex-direction:column;gap:16px}.slo-section-heading>p{flex-basis:auto;max-width:640px}.slo-metrics>div{padding:0 10px}.slo-metrics strong{font-size:31px}.slo-bin-readout{gap:8px}}
 @media(max-width:600px){
  .slo-case{padding-top:31px}.slo-header h3{font-size:29px;line-height:1.4}.slo-header>p:not(.slo-kicker){font-size:15px}
  .slo-badges span{font-size:10px}.slo-metrics{padding:20px 2px;border-radius:16px}.slo-metrics>div{padding:0 5px}.slo-metrics strong{font-size:27px}.slo-metrics span{font-size:11px}
