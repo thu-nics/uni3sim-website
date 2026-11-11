@@ -2,7 +2,7 @@
 
 Uni³ spans compute architectures, communication protocols, and memory & storage. Research background and interactive diagrams by NICS-EFC SysArch.
 
-[English (default)](https://hazuyuki.github.io/supernode-system-simulator/) · [中文版](https://hazuyuki.github.io/supernode-system-simulator/zh/)
+[English (default)](https://thu-nics.github.io/uni3sim-website/) · [中文版](https://thu-nics.github.io/uni3sim-website/zh/)
 
 主网址默认英文，导航栏右侧提供 English / 中文切换，并保留当前阅读章节。正文、案例说明、动画阶段、图内文字和无障碍标签均支持两种语言。
 
@@ -25,7 +25,9 @@ Uni³ spans compute architectures, communication protocols, and memory & storage
 
 ## 更新与部署
 
-本页位于 [Hazuyuki/Hazuyuki.github.io](https://github.com/Hazuyuki/Hazuyuki.github.io/tree/master/supernode-system-simulator) 的 `supernode-system-simulator/` 子目录。GitHub Pages 从该仓库的 `master` 分支发布；推送页面更新后自动重新部署。
+本页由 [thu-nics/uni3sim-website](https://github.com/thu-nics/uni3sim-website) 托管。GitHub Pages 从 `main` 分支的仓库根目录 `/` 发布；后续页面更新推送到该分支后，新网址自动重新部署。
+
+网页源码从原个人主页仓库的 `supernode-system-simulator/` 子目录导入，保留了 12 次网页修改历史。
 
 页面使用原生 HTML/CSS/JavaScript，无第三方运行时依赖。可以使用任意静态 HTTP 服务器本地预览。
 
