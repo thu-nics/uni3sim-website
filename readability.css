@@ -2,6 +2,27 @@
 :root{--muted:#5d5665;--soft:#71667b;--reading-secondary:#685d74;--reading-green:#426c59}
 body{font-size:18px}
 .hero-subtitle{color:#5e5668}
+/* Uni³Sim identity and a balanced four-card system overview. */
+.wordmark .uni3-wordmark{font-size:18px;font-weight:550;letter-spacing:-.045em}
+.uni3-wordmark sup,.uni3-brand sup{position:relative;top:-.05em;font-size:.53em;line-height:0;vertical-align:super;margin-inline:.035em}
+html[lang] .hero .uni3-title{font-size:clamp(36px,4.2vw,60px);line-height:1.12;letter-spacing:-.045em;max-width:1100px;margin-inline:auto}
+.uni3-title .uni3-brand{display:block;font-size:1.07em;letter-spacing:-.055em;margin-bottom:.17em;color:#574269}
+.uni3-title .hero-title-line{display:block}
+html[lang] .hero .uni3-summary{max-width:830px;font-size:18px;line-height:1.8;margin-top:22px;text-wrap:pretty}
+.hero-dimensions{font-weight:550;color:#624a77}
+.hero-eyebrow{margin-bottom:24px}
+.hero-figure{width:min(1120px,100%);margin-top:27px}
+@media(min-width:601px){.hero{padding-top:114px}.hero-foot{margin-top:2px}}
+@media(max-width:800px) and (min-width:601px){html[lang] .hero .uni3-title{font-size:clamp(32px,4.5vw,38px)}}
+@media(max-width:600px){
+  html[lang] .hero .uni3-title{font-size:clamp(25px,6.4vw,37px);line-height:1.2;letter-spacing:-.035em}
+  .uni3-title .uni3-brand{font-size:1.28em;margin-bottom:.22em}
+  html[lang] .hero .uni3-summary{font-size:15px;line-height:1.75;margin-top:19px;max-width:360px}
+  .hero .hero-figure{width:100%;max-width:380px;margin:24px auto 0}
+  .hero .hero-foot{margin-top:10px}
+  .hero-eyebrow{margin-bottom:22px}
+  .wordmark .uni3-wordmark{font-size:17px}
+}
 .section-heading .section-lead,html[lang=en] .section-heading .section-lead{font-size:19px}
 .hero-eyebrow,.hero-foot,.micro-label,.small-tag,.scale-tabs small,.focus-list li,
 .figure-note,.figure-caption p,.kernel-readouts small,.kernel-readouts span,

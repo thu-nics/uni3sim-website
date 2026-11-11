@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="NICS-EFC SysArch：从计算、互连与存储，走向面向下一代超节点的系统级仿真。通过交互图解理解白盒建模和推理服务反馈。">
-  <title>面向下一代超节点的系统级仿真框架 · NICS-EFC SysArch</title>
+  <meta name="description" content="Uni³Sim：面向大规模 LLM 推理服务的开源仿真，贯通计算架构、通信协议与存储。">
+  <title>Uni³Sim: Open-Source Simulation for LLM Serving at Scale</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../case-studies.css">
-  <link rel="stylesheet" href="../readability.css?v=20261110-author-groups">
-  <script defer src="../data/i18n.js"></script>
+  <link rel="stylesheet" href="../readability.css?v=20261111-uni3sim">
+  <script defer src="../data/i18n.js?v=20261111-uni3sim"></script>
   <script defer src="../data/cases.js"></script>
   <script defer src="../scripts/timeline.js"></script>
-  <script defer src="../scripts/figures.js"></script>
+  <script defer src="../scripts/figures.js?v=20261111-uni3sim"></script>
   <script defer src="../scripts/case-studies.js"></script>
   <script defer src="../scripts/app.js"></script>
 </head>
@@ -21,7 +21,7 @@
   <a class="skip-link" href="#background">跳转到背景介绍</a>
   <header class="site-header">
     <div class="nav-inner">
-      <a class="wordmark" href="#top" aria-label="NICS-EFC SysArch 首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16v16H8zM8 16h16M16 8v16"/><circle cx="8" cy="8" r="2.7"/><circle cx="24" cy="8" r="2.7"/><circle cx="8" cy="24" r="2.7"/><circle cx="24" cy="24" r="2.7"/></svg><span>NICS-EFC <b>SysArch</b></span></a>
+      <a class="wordmark" href="#top" aria-label="Uni³Sim 首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16v16H8zM8 16h16M16 8v16"/><circle cx="8" cy="8" r="2.7"/><circle cx="24" cy="8" r="2.7"/><circle cx="8" cy="24" r="2.7"/><circle cx="24" cy="24" r="2.7"/></svg><span class="uni3-wordmark">Uni<sup>3</sup><b>Sim</b></span></a>
       <nav id="main-nav" aria-label="页面导航"><a href="#background">背景与挑战</a><a href="#framework">建模框架</a><a href="#modeling">交互图解</a><a href="#cases">研究案例</a><a href="#about">关于研究 <span aria-hidden="true">↗</span></a></nav>
       <div class="header-actions"><a class="language-toggle" href="../" lang="en" hreflang="en" aria-label="Switch to English"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.4"/><ellipse cx="10" cy="10" rx="3.2" ry="7.4"/><path d="M3 7.5h14M3 12.5h14"/></svg><span>English</span></a><button class="menu-toggle" aria-label="打开页面导航" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button></div>
     </div>
@@ -33,11 +33,11 @@
       <canvas id="hero-canvas" aria-hidden="true"></canvas><div class="hero-wash" aria-hidden="true"></div>
       <div class="hero-copy">
         <p class="hero-eyebrow"><span class="status-dot"></span> NICS-EFC SYSARCH <span class="eyebrow-divider">/</span> RESEARCH OVERVIEW</p>
-        <h1>面向下一代超节点的<br><span class="gradient-text">系统级仿真框架</span></h1>
-        <p class="hero-subtitle">在系统落地之前，理解<span class="nowrap">计算、存储与互连</span><br class="desktop-break">如何共同决定推理服务性能。</p>
+        <h1 class="uni3-title"><span class="uni3-brand">Uni<sup>3</sup>Sim:</span><span class="hero-title-line">Open-Source Simulation</span><span class="hero-title-line gradient-text">for LLM Serving at Scale</span></h1>
+        <p class="hero-subtitle uni3-summary">Uni³ 贯通<span class="hero-dimensions">计算架构、通信协议与存储</span>，理解大规模 LLM 推理服务的系统性能。</p>
         <div class="hero-actions"><a class="button button-primary" href="#background">从背景开始 <span aria-hidden="true">↓</span></a><a class="button button-outline" href="#framework">探索仿真框架 <span aria-hidden="true">↗</span></a></div>
       </div>
-      <div class="hero-figure" aria-label="计算、互连、存储通过系统建模连接到推理服务"><svg id="hero-architecture" viewBox="0 0 1100 280" role="img" aria-labelledby="hero-diagram-title"><title id="hero-diagram-title">从计算、互连和存储，到统一的系统评估</title></svg></div>
+      <div class="hero-figure" aria-label="计算架构、通信协议与存储协同建模，得到系统评估结果"><svg id="hero-architecture" viewBox="0 0 1100 258" role="img" aria-label="Uni³ 的三个建模维度与系统评估"></svg></div>
       <div class="hero-foot"><span>可解释的性能建模</span><i></i><span>动态的调度反馈</span><i></i><span>多维的系统评估</span></div>
       <a class="scroll-cue" href="#background" aria-label="阅读背景介绍"><span>SCROLL TO EXPLORE</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></a>
     </section>
@@ -133,7 +133,7 @@
         <div class="module-grid">
           <article class="module-card"><div class="module-icon compute-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="17" y="17" width="30" height="30" rx="7"/><path d="M25 3v14M39 3v14M25 47v14M39 47v14M3 25h14M3 39h14M47 25h14M47 39h14"/><path d="M26 26h12v12H26z"/></svg></div><p class="micro-label">COMPUTE</p><h3>ArchPrism</h3><p>连接算子、硬件资源与推理服务，解释性能从哪里来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>计算工作量与有效资源能力</li><li>分层流量、并发与资源依赖</li><li>Kernel 时间与调度反馈</li></ul></details></article>
           <article class="module-card"><div class="module-icon network-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M15 16 49 16 49 48 15 48Z M15 16l34 32M49 16 15 48"/><rect x="8" y="9" width="14" height="14" rx="4"/><rect x="42" y="9" width="14" height="14" rx="4"/><rect x="8" y="41" width="14" height="14" rx="4"/><rect x="42" y="41" width="14" height="14" rx="4"/></svg></div><p class="micro-label">INTERCONNECT</p><h3>ProtoBridge</h3><p>让超节点互连协议的差异，在数据包执行与依赖中显式呈现。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>通信算子到数据包的转换</li><li>协议参数与数据包依赖</li><li>共享的数据包执行模块</li></ul></details></article>
-          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBF 系统仿真</h3><p>把新型存储设备、调度策略与真实推理工作负载连接起来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>模块化的 HBF 设备模型</li><li>容量与数据调度策略</li><li>推理引擎接入与系统级评估</li></ul></details></article>
+          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBFrame</h3><p>把新型存储设备、调度策略与真实推理工作负载连接起来。</p><details><summary>建模关注点 <span aria-hidden="true">＋</span></summary><ul><li>模块化的 HBF 设备模型</li><li>容量与数据调度策略</li><li>推理引擎接入与系统级评估</li></ul></details></article>
         </div>
         <div class="research-direction"><div><span class="micro-label">建模评估</span><p>给定系统设计，理解性能与瓶颈。</p></div><span class="direction-arrow" aria-hidden="true">→</span><div><span class="micro-label">进一步的研究方向</span><p>在多维约束下，探索系统设计空间。</p></div></div>
       </div>
@@ -150,7 +150,7 @@
 
     <section id="about" class="about-section">
       <div class="container">
-        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>一起理解，下一代计算系统。</h2><p>面向下一代超节点的系统级仿真框架</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p class="team-authors"><span class="author-group">朱振华 · 杨昕昊 · 朱昱</span> <span class="author-group">廖天羽 · 谢童欣</span></p></div></div>
+        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>一起理解，下一代计算系统。</h2><p>Uni³Sim: Open-Source Simulation for LLM Serving at Scale</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p class="team-authors"><span class="author-group">朱振华 · 杨昕昊 · 朱昱</span> <span class="author-group">廖天羽 · 谢童欣</span></p></div></div>
         <footer><a class="footer-brand" href="#top">NICS-EFC <strong>SysArch</strong></a><p>计算 · 互连 · 存储 · 系统</p><span>2026</span></footer>
       </div>
     </section>

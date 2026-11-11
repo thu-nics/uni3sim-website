@@ -1,6 +1,6 @@
-# 面向下一代超节点的系统级仿真框架
+# Uni³Sim: Open-Source Simulation for LLM Serving at Scale
 
-NICS-EFC SysArch 的研究背景与交互图解。
+Uni³ spans compute architectures, communication protocols, and memory & storage. Research background and interactive diagrams by NICS-EFC SysArch.
 
 [English (default)](https://hazuyuki.github.io/supernode-system-simulator/) · [中文版](https://hazuyuki.github.io/supernode-system-simulator/zh/)
 

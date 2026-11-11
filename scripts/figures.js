@@ -45,40 +45,57 @@
   }
   function heroArchitecture() {
     const el=document.getElementById('hero-architecture');
-    if(matchMedia('(max-width: 600px)').matches){
-      el.setAttribute('viewBox','0 0 380 200');
-      let mobile=title('计算、互连、存储连接到系统评估');
-      const parts=[{x:7,label:'计算',kind:'compute'},{x:137,label:'互连',kind:'network'},{x:267,label:'存储',kind:'memory'}];
-      parts.forEach(item=>{
-        mobile+=rect(item.x,12,106,98,'#ffffffec','#e3d9ed',14);
-        if(item.kind==='compute')mobile+=chip(item.x+36,30,34,true);
-        if(item.kind==='network'){
-          for(let row=0;row<2;row++)for(let col=0;col<2;col++){const x=item.x+36+col*35,y=37+row*23;if(row===0)mobile+=line(x,y,x,y+23,'#bba6d0');if(col===0)mobile+=line(x,y,x+35,y,'#bba6d0');mobile+=circle(x,y,3.5,'#b69acb');}
+    const mobile=matchMedia('(max-width: 600px)').matches;
+    el.setAttribute('viewBox',mobile?'0 0 380 338':'0 0 1100 258');
+    const w=mobile?174:232,h=mobile?148:176;
+    const blocks=[
+      {kind:'compute',label:'计算',sub:'计算架构与算子',short:'计算架构'},
+      {kind:'network',label:'互连',sub:'通信协议与拓扑',short:'通信协议'},
+      {kind:'memory',label:'存储',sub:'存储层次与数据调度',short:'层次与容量'},
+      {kind:'evaluation',label:'系统评估',sub:'性能指标与瓶颈',short:'指标与时间线'}
+    ];
+    let s=title('Uni³ 的三个建模维度与系统评估');
+    blocks.forEach((b,i)=>{
+      const x=mobile?8+(i%2)*190:32+i*268,y=mobile?8+Math.floor(i/2)*172:22;
+      const cx=x+w/2,cy=y+(mobile?42:65),output=i===3;
+      s+=`<g class="hero-system-card" data-domain="${b.kind}">`;
+      s+=rect(x,y,w,h,output?'#f3edf9':'#ffffffed',output?'#c5aedc':'#ded2e9',18,'class="hero-card-surface"');
+      if(!mobile)s+=text(x+18,y+24,output?'OUTPUT':`0${i+1} / ${b.kind.toUpperCase()}`,9,'#7b658e','letter-spacing="1.1"');
+      if(b.kind==='compute'){
+        const size=mobile?32:34;
+        for(let j=0;j<3;j++)s+=chip(cx-size/2+(j-1)*(mobile?43:50),cy-size/2,size,j===1);
+      }
+      if(b.kind==='network'){
+        for(let col=0;col<3;col++)for(let row=0;row<2;row++){
+          const nx=cx+(col-1)*(mobile?39:49),ny=cy+(row-.5)*30;
+          if(col<2)s+=line(nx,ny,nx+(mobile?39:49),ny,'#c6b2d8','stroke-width="1.3"');
+          if(row===0)s+=line(nx,ny,nx,ny+30,'#c6b2d8','stroke-width="1.3"');
+          s+=circle(nx,ny,5,'#dacbe9')+circle(nx,ny,2.4,'#9373b3');
         }
-        if(item.kind==='memory')for(let i=2;i>=0;i--)mobile+=path(`M${item.x+25} ${35+i*10}l28-9 28 9-28 9Z`,'#b69acb');
-        mobile+=text(item.x+53,91,item.label,13,'#806791',`${centered} font-weight="550"`);
-      });
-      mobile+=path('M60 110V130H320V110M190 110V146','#d3c3e2','stroke-width="1"');
-      mobile+=rect(123,146,134,36,'#f3eef9','#ddcfea',12)+text(190,169,'系统评估',12,'#9173aa',centered);
-      mount(el,mobile);return;
+      }
+      if(b.kind==='memory'){
+        const half=mobile?42:50;
+        for(let j=2;j>=0;j--){const my=cy-13+j*12;s+=path(`M${cx-half} ${my}l${half} -13 ${half} 13 -${half} 13Z`,'#aa8bc6','stroke-width="1.3"')+path(`M${cx-half} ${my}v6l${half} 13 ${half}-13v-6`,'#c5b0d8');}
+      }
+      if(output){
+        s+=path(`M${cx-45} ${cy-23}v48h94`,'#a688be','stroke-width="1.4"');
+        [18,31,43].forEach((height,j)=>{s+=rect(cx-30+j*29,cy+22-height,16,height,j===2?'#a88ac6':'#d4c1e6','none',3);});
+        s+=path(`M${cx-27} ${cy-7}l29-10 29-12`,'#806099','stroke-width="1.5"');
+        [[-27,-7],[2,-17],[31,-29]].forEach(([dx,dy])=>{s+=circle(cx+dx,cy+dy,3,'#806099');});
+      }
+      s+=text(cx,y+(mobile?103:128),b.label,17,'#654d7b',`${centered} font-weight="600"`);
+      s+=text(cx,y+(mobile?128:153),mobile?b.short:b.sub,12,'#776486',centered,w-24);
+      s+='</g>';
+    });
+    if(mobile){
+      s+=path('M186 82h8M190 78v8M91 168h8M95 164v8','#b49bc9','stroke-width="1.4"');
+      s+=path('M185 254h10m-4-4 4 4-4 4','#a085b9','stroke-width="1.4"');
+    }else{
+      s+=path('M277 110h10M282 105v10M545 110h10M550 105v10','#b49bc9','stroke-width="1.5"');
+      s+=path('M805 110h24m-6-5 6 5-6 5','#a085b9','stroke-width="1.5"');
+      s+=path('M148 211v7h536v-7M416 218v9','#d7c8e4','stroke-width="1.2"');
+      s+=text(416,246,'Uni³ · 三个维度，协同建模',12,'#78628a',centered);
     }
-    el.setAttribute('viewBox','0 0 1100 280');
-    let s=title('计算、互连、存储协同建模，连接到系统指标');
-    const blocks=[{x:60,label:'计算',sub:'Kernel 与资源能力',kind:'compute'},{x:332,label:'互连',sub:'协议、拓扑与执行依赖',kind:'network'},{x:604,label:'存储',sub:'容量、流量与数据调度',kind:'memory'}];
-    for(const b of blocks){
-      s+=rect(b.x,49,232,144,'#ffffffea','#e7e0ef',19);
-      s+=text(b.x+21,77,b.kind.toUpperCase(),8,'#aaa0b7','letter-spacing="1.4"');
-      if(b.kind==='compute') {for(let i=0;i<3;i++)s+=chip(b.x+26+i*60,92,33,i===1);}
-      if(b.kind==='network'){for(let i=0;i<3;i++)for(let j=0;j<2;j++){const x=b.x+51+i*65,y=101+j*34;if(i<2)s+=line(x,y,x+65,y,'#cfc0e2');if(j===0)s+=line(x,y,x,y+34,'#cfc0e2');s+=circle(x,y,5,'#d7c8e8')+circle(x,y,2.5,'#a288bb');}}
-      if(b.kind==='memory'){for(let i=2;i>=0;i--){const y=94+i*12;s+=path(`M${b.x+55} ${y}l60 -16 60 16 -60 16Z`,'#b7a2d0','stroke-width="1.2"')+path(`M${b.x+55} ${y}v9l60 16 60-16v-9`,'#c5b5d8');}}
-      s+=text(b.x+116,165,b.label,16,'#746281',`${centered} font-weight="550"`);
-      s+=text(b.x+116,217,b.sub,10,'#a494b0',centered);
-    }
-    s+=path('M292 121H332M564 121H604','#cdbde0','stroke-width="1.4"');
-    s+=circle(312,121,3,'#b29ac9')+circle(584,121,3,'#b29ac9');
-    s+=path('M836 121H877Q894 121 894 137V153H928','#cdbde0','stroke-width="1.4"');
-    s+=rect(925,106,133,94,'#f4f0fa','#d8cae8',17)+text(991.5,143,'系统评估',17,'#806398',`${centered} font-weight="550"`)+text(991.5,166,'指标 · 时间线 · 瓶颈',9,'#a08cac',centered,119);
-    s+=path('M176 237H719','#e7deef','stroke-width="1"')+text(447,262,'在同一系统中，理解跨层设计的影响',10,'#ad9dbb',centered);
     mount(el,s);
   }
   const scaleSteps=[

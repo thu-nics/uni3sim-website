@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="NICS-EFC SysArch: system-level simulation of compute, interconnects, and memory for next-generation supernodes. Explore interpretable performance models and serving feedback through interactive diagrams.">
-  <title>System-Level Simulation for Next-Generation Supernodes · NICS-EFC SysArch</title>
+  <meta name="description" content="Uni³Sim: Open-source simulation for LLM serving at scale, spanning compute architectures, communication protocols, and memory & storage.">
+  <title>Uni³Sim: Open-Source Simulation for LLM Serving at Scale</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../case-studies.css">
-  <link rel="stylesheet" href="../readability.css?v=20261110-author-groups">
-  <script defer src="../data/i18n.js"></script>
+  <link rel="stylesheet" href="../readability.css?v=20261111-uni3sim">
+  <script defer src="../data/i18n.js?v=20261111-uni3sim"></script>
   <script defer src="../data/cases.js"></script>
   <script defer src="../scripts/timeline.js"></script>
-  <script defer src="../scripts/figures.js"></script>
+  <script defer src="../scripts/figures.js?v=20261111-uni3sim"></script>
   <script defer src="../scripts/case-studies.js"></script>
   <script defer src="../scripts/app.js"></script>
 </head>
@@ -21,7 +21,7 @@
   <a class="skip-link" href="#background">Skip to background</a>
   <header class="site-header">
     <div class="nav-inner">
-      <a class="wordmark" href="#top" aria-label="NICS-EFC SysArch home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16v16H8zM8 16h16M16 8v16"/><circle cx="8" cy="8" r="2.7"/><circle cx="24" cy="8" r="2.7"/><circle cx="8" cy="24" r="2.7"/><circle cx="24" cy="24" r="2.7"/></svg><span>NICS-EFC <b>SysArch</b></span></a>
+      <a class="wordmark" href="#top" aria-label="Uni³Sim home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16v16H8zM8 16h16M16 8v16"/><circle cx="8" cy="8" r="2.7"/><circle cx="24" cy="8" r="2.7"/><circle cx="8" cy="24" r="2.7"/><circle cx="24" cy="24" r="2.7"/></svg><span class="uni3-wordmark">Uni<sup>3</sup><b>Sim</b></span></a>
       <nav id="main-nav" aria-label="Page navigation"><a href="#background">Background</a><a href="#framework">Framework</a><a href="#modeling">Interactive diagrams</a><a href="#cases">Case studies</a><a href="#about">About <span aria-hidden="true">↗</span></a></nav>
       <div class="header-actions"><a class="language-toggle" href="../zh/" lang="zh-CN" hreflang="zh-CN" aria-label="切换到中文版"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.4"/><ellipse cx="10" cy="10" rx="3.2" ry="7.4"/><path d="M3 7.5h14M3 12.5h14"/></svg><span>中文</span></a><button class="menu-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button></div>
     </div>
@@ -33,11 +33,11 @@
       <canvas id="hero-canvas" aria-hidden="true"></canvas><div class="hero-wash" aria-hidden="true"></div>
       <div class="hero-copy">
         <p class="hero-eyebrow"><span class="status-dot"></span> NICS-EFC SYSARCH <span class="eyebrow-divider">/</span> RESEARCH OVERVIEW</p>
-        <h1>Next-Generation Supernodes:<br><span class="gradient-text">A System-Level Simulation Framework</span></h1>
-        <p class="hero-subtitle">Before building the system, understand how <span class="nowrap">compute, memory, and interconnects</span><br class="desktop-break"> together shape inference serving performance.</p>
+        <h1 class="uni3-title"><span class="uni3-brand">Uni<sup>3</sup>Sim:</span><span class="hero-title-line">Open-Source Simulation</span><span class="hero-title-line gradient-text">for LLM Serving at Scale</span></h1>
+        <p class="hero-subtitle uni3-summary">Uni³ spans <span class="hero-dimensions">compute architectures, communication protocols, and memory & storage</span> to explain system performance for LLM serving at scale.</p>
         <div class="hero-actions"><a class="button button-primary" href="#background">Start with the background <span aria-hidden="true">↓</span></a><a class="button button-outline" href="#framework">Explore the framework <span aria-hidden="true">↗</span></a></div>
       </div>
-      <div class="hero-figure" aria-label="System modeling connects compute, interconnects, and memory to inference serving"><svg id="hero-architecture" viewBox="0 0 1100 280" role="img" aria-labelledby="hero-diagram-title"><title id="hero-diagram-title">From compute, interconnects, and memory to unified system evaluation</title></svg></div>
+      <div class="hero-figure" aria-label="Co-model compute architectures, communication protocols, and memory & storage to evaluate the system"><svg id="hero-architecture" viewBox="0 0 1100 258" role="img" aria-label="The three modeling dimensions of Uni³ and system evaluation"></svg></div>
       <div class="hero-foot"><span>Interpretable performance models</span><i></i><span>Dynamic scheduling feedback</span><i></i><span>Multidimensional system evaluation</span></div>
       <a class="scroll-cue" href="#background" aria-label="Read the background"><span>SCROLL TO EXPLORE</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></a>
     </section>
@@ -133,7 +133,7 @@
         <div class="module-grid">
           <article class="module-card"><div class="module-icon compute-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="17" y="17" width="30" height="30" rx="7"/><path d="M25 3v14M39 3v14M25 47v14M39 47v14M3 25h14M3 39h14M47 25h14M47 39h14"/><path d="M26 26h12v12H26z"/></svg></div><p class="micro-label">COMPUTE</p><h3>ArchPrism</h3><p>Connect operators, hardware resources, and inference serving to explain where performance comes from.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Compute work and effective resource capacity</li><li>Hierarchical traffic, concurrency, and resource dependencies</li><li>Kernel time and scheduling feedback</li></ul></details></article>
           <article class="module-card"><div class="module-icon network-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M15 16 49 16 49 48 15 48Z M15 16l34 32M49 16 15 48"/><rect x="8" y="9" width="14" height="14" rx="4"/><rect x="42" y="9" width="14" height="14" rx="4"/><rect x="8" y="41" width="14" height="14" rx="4"/><rect x="42" y="41" width="14" height="14" rx="4"/></svg></div><p class="micro-label">INTERCONNECT</p><h3>ProtoBridge</h3><p>Make supernode interconnect protocol differences explicit through packet execution and dependencies.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Translation from communication operators to packets</li><li>Protocol parameters and packet dependencies</li><li>A shared packet execution module</li></ul></details></article>
-          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBF System Simulation</h3><p>Connect emerging memory devices and scheduling policies to real inference workloads.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Modular HBF device models</li><li>Capacity and data scheduling policies</li><li>Inference engine integration and system-level evaluation</li></ul></details></article>
+          <article class="module-card"><div class="module-icon memory-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m9 21 23-12 23 12-23 12Zm0 11 23 12 23-12M9 43l23 12 23-12"/></svg></div><p class="micro-label">MEMORY & STORAGE</p><h3>HBFrame</h3><p>Connect emerging memory devices and scheduling policies to real inference workloads.</p><details><summary>Modeling focus <span aria-hidden="true">＋</span></summary><ul><li>Modular HBF device models</li><li>Capacity and data scheduling policies</li><li>Inference engine integration and system-level evaluation</li></ul></details></article>
         </div>
         <div class="research-direction"><div><span class="micro-label">MODEL AND EVALUATE</span><p>Understand the performance and bottlenecks of a given system design.</p></div><span class="direction-arrow" aria-hidden="true">→</span><div><span class="micro-label">FURTHER RESEARCH</span><p>Explore the system design space under multiple constraints.</p></div></div>
       </div>
@@ -150,7 +150,7 @@
 
     <section id="about" class="about-section">
       <div class="container">
-        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>Understanding the next generation of computing systems.</h2><p>A System-Level Simulation Framework for Next-Generation Supernodes</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p class="team-authors"><span class="author-group">Zhenhua Zhu · Xinhao Yang · Yu Zhu</span> <span class="author-group">Tianyu Liao · Tongxin Xie</span></p></div></div>
+        <div class="about-top"><div><p class="eyebrow">ABOUT THE RESEARCH</p><h2>Understanding the next generation of computing systems.</h2><p>Uni³Sim: Open-Source Simulation for LLM Serving at Scale</p></div><div class="team-signature"><strong>NICS-EFC SysArch</strong><p class="team-authors"><span class="author-group">Zhenhua Zhu · Xinhao Yang · Yu Zhu</span> <span class="author-group">Tianyu Liao · Tongxin Xie</span></p></div></div>
         <footer><a class="footer-brand" href="#top">NICS-EFC <strong>SysArch</strong></a><p>COMPUTE · INTERCONNECTS · MEMORY · SYSTEMS</p><span>2026</span></footer>
       </div>
     </section>
