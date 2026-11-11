@@ -19,10 +19,12 @@ Uni³ spans compute architectures, communication protocols, and memory & storage
 - `scripts/timeline.js`：独立时间轴、暂停、重播与阶段定位。
 - `scripts/figures.js`：SVG 机制图与教学示例。
 - `scripts/app.js`：页面交互、导航和 Canvas 背景。
-- `data/cases.js`：案例顺序与文案：TTFT SLO / Prefill 余量、scale-up memory pool。
+- `data/cases.js`：案例顺序与文案：TTFT SLO / Prefill 余量、scale-up memory pool、HBFrame 存储层次。
 - `scripts/case-studies.js`、`case-studies.css`：案例版式与交互图解。
 - `scripts/prefill-slo-case.js`、`prefill-slo.css`：Prefill 余量案例、原始忙碌率阶梯曲线与机制动画。
 - `data/prefill-slo.js`：2P1D、TP8 配置下 10–55 秒窗口的 90 个 0.5 秒原始桶。
+- `scripts/hbframe-tier-case.js`、`hbframe-tier.css`：HBFrame 四种供给过程、H2P / H2C 联动动画、进度和 SVG 保存。
+- `data/hbframe-tier.js`：8 份原始受控微型轨迹，保留事件时间和 Block 状态边界。
 - `assets/cases/memory-pool/`：三模型服务前沿和算子时间线。
 
 ## 更新与部署
@@ -38,5 +40,7 @@ Uni³ spans compute architectures, communication protocols, and memory & storage
 背景依据所提供的演示材料整理；scale-up memory pool 案例来自所提供论文的 Case Study I，结果图保留其原始矢量内容。所有动画时间与教学示例均按正文标明的条件解释，不代表通用硬件性能结论。后续案例使用真实配置与数据补充。
 
 Prefill 余量案例的忙碌率定义为有 kernel 执行的时间 / 窗口时长；多 GPU 按 GPU·s 加权。P 池均值 27.3%，D 池 82.7%，24 张卡总体 45.8%；曲线保留原始时间桶，不做平滑。随机到达、排队和预留 P 容量的动画是机制示意，与观测曲线分别标注。原始包不含逐请求 TTFT，因此页面不推断具体 SLO 达标率。
+
+最后的 HBFrame 案例比较 L1E 直接使用、提升、L2 恢复及 HBM/HBF 联合 L1 的供给机制。两侧共用模拟时钟、保留各自完成时刻；事件条与持久 KV / 临时窗口占用来自所提供的微型运行。联合供给轮次为机制示意，不增加原始访问数，不据此进行完整模型性能排名。
 
 团队：朱振华、杨昕昊、朱昱、廖天羽、谢童欣 · NICS-EFC SysArch。

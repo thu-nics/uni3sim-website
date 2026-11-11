@@ -27,4 +27,10 @@ window.SIMULATOR_CASES = [{
     ['NVMe 池', '30.72 TB / 节点', '14 GB/s', '60 μs'],
     ['HBF 池', '1.024 TB / 节点', '3.2 TB/s', '20 μs']
   ]
+}, {
+  id: 'case-hbframe-tier',
+  type: 'hbframe-tier',
+  kicker: 'CASE 03 / HBFrame · MEMORY HIERARCHY',
+  title: 'L1 / L1E / L2：Peer 与 Cascade 的供给路径。',
+  summary: '以同一组完整 KV Block，比较 H2P peer 分支与 H2C cascade 路径下的逻辑供给、准备与完成反馈。'
 }];
