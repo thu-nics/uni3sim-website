@@ -3,6 +3,7 @@
   const messages = {
     'Uni³Sim：面向大规模 LLM 推理服务的开源仿真，贯通计算架构、通信协议与存储。': 'Uni³Sim: Open-source simulation for LLM serving at scale, spanning compute architectures, communication protocols, and memory & storage.',
     'Uni³Sim 首页': 'Uni³Sim home',
+    'Uni³Sim GitHub 仓库（在新标签页打开）': 'Uni³Sim GitHub repository (opens in a new tab)',
     'Uni³ 贯通': 'Uni³ spans ',
     '计算架构、通信协议与存储': 'compute architectures, communication protocols, and memory & storage',
     '，理解大规模 LLM 推理服务的系统性能。': ' to explain system performance for LLM serving at scale.',
