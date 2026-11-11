@@ -519,14 +519,17 @@
     return template.innerHTML;
   }
   const measure = document.createElement('canvas').getContext('2d'), widths = new Map();
-  function fitText(value, size, width) {
-    if (lang !== 'en' || !width) return size;
-    const text = t(value), key = `${size}:${text}`;
+  // SVG labels inherit this same system-font stack. Measure with their weight
+  // as well, so fallback fonts on another OS do not invalidate width budgets.
+  const figureFont = getComputedStyle(document.body).fontFamily;
+  function fitText(value, size, width, weight = 400) {
+    if (!width) return size;
+    const text = t(value), key = `${weight}:${size}:${text}`;
     if (!widths.has(key)) {
-      measure.font = `${size}px Arial, sans-serif`;
+      measure.font = `${weight} ${size}px ${figureFont}`;
       widths.set(key, measure.measureText(text).width);
     }
-    return Number(Math.min(size, size * width / Math.max(1, widths.get(key))).toFixed(2));
+    return Math.floor(Math.min(size, size * width / Math.max(1, widths.get(key))) * 100) / 100;
   }
   const nestedLocale = /\/(?:en|zh)\/(?:index\.html)?$/.test(location.pathname);
   const asset = name => nestedLocale && !/^(?:data:|https?:)/.test(name) ? `../${name}` : name;

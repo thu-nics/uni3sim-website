@@ -1,5 +1,5 @@
 /* Modest type and contrast adjustments, shared by both language versions. */
-:root{--muted:#5d5665;--soft:#71667b;--reading-secondary:#685d74;--reading-green:#426c59}
+:root{--muted:#5d5665;--soft:#71667b;--reading-secondary:#685d74;--reading-green:#426c59;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",Arial,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
 body{font-size:18px}
 .hero-subtitle{color:#5e5668}
 /* Uni³Sim identity and a balanced four-card system overview. */

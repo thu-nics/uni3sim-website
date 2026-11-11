@@ -8,7 +8,7 @@
   const number = value => Number(value.toFixed(2));
   const limit = value => Math.max(0, Math.min(1, value));
   const box = (x,y,w,h,fill='#fff',stroke='#e5ddec',r=8,extra='') => `<rect x="${number(x)}" y="${number(y)}" width="${number(w)}" height="${number(h)}" rx="${r}" fill="${fill}" stroke="${stroke}" ${extra}/>`;
-  const label = (x,y,text,size=12,color='#8c7998',extra='',maxWidth) => `<text x="${number(x)}" y="${number(y)}" font-size="${window.SimI18n.fitText(text,window.SimFigures.diagramSize(size),maxWidth)}" fill="${window.SimFigures.diagramColor(color)}" ${extra}>${e(text)}</text>`;
+  const label = (x,y,text,size=12,color='#8c7998',extra='',maxWidth) => `<text x="${number(x)}" y="${number(y)}" font-size="${window.SimI18n.fitText(text,window.SimFigures.diagramSize(size),maxWidth,extra.match(/\bfont-weight="([^"]+)"/)?.[1] || 400)}" fill="${window.SimFigures.diagramColor(color)}" ${extra}>${e(text)}</text>`;
   const route = (d,color='#d7cadf',extra='') => `<path d="${d}" fill="none" stroke="${color}" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
   const point = (x,y,r,color) => `<circle cx="${number(x)}" cy="${number(y)}" r="${r}" fill="${color}"/>`;
   const media = name => `<div class="media-controls"><button class="icon-button reset-button" type="button" aria-label="重播${name}">↺</button><button class="icon-button play-toggle" type="button" aria-label="暂停${name}" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="m7 4 9 6-9 6z"/><path class="pause-icon" d="M6 4h3v12H6zm5 0h3v12h-3z"/></svg></button></div>`;

@@ -27,7 +27,7 @@
   }
   const diagramSize=(size,onDark=false)=>size>=20?size:Math.max(onDark?12:11,size+1);
   const rect = (x,y,w,h,fill=C.white,stroke=C.line,r=10,attrs='') => `<rect x="${fmt(x)}" y="${fmt(y)}" width="${fmt(w)}" height="${fmt(h)}" rx="${r}" fill="${fill}" stroke="${stroke}" ${attrs}/>`;
-  const text = (x,y,value,size=13,color=C.ink,attrs='',maxWidth,onDark=false) => `<text x="${fmt(x)}" y="${fmt(y)}" font-size="${window.SimI18n.fitText(value,diagramSize(size,onDark),maxWidth)}" fill="${diagramColor(color,onDark)}" ${attrs}>${esc(value)}</text>`;
+  const text = (x,y,value,size=13,color=C.ink,attrs='',maxWidth,onDark=false) => `<text x="${fmt(x)}" y="${fmt(y)}" font-size="${window.SimI18n.fitText(value,diagramSize(size,onDark),maxWidth,attrs.match(/\bfont-weight="([^"]+)"/)?.[1] || 400)}" fill="${diagramColor(color,onDark)}" ${attrs}>${esc(value)}</text>`;
   const darkText = (x,y,value,size=13,color=C.ink,attrs='',maxWidth) => text(x,y,value,size,color,attrs,maxWidth,true);
   const centered = 'text-anchor="middle"';
   const line = (x1,y1,x2,y2,color=C.line,attrs='') => `<path d="M${fmt(x1)} ${fmt(y1)}L${fmt(x2)} ${fmt(y2)}" fill="none" stroke="${color}" ${attrs}/>`;
