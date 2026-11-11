@@ -119,7 +119,7 @@
   addEventListener('hashchange', updateLanguageLink);
   languageLink.addEventListener('click', () => {
     const target = languageTarget();
-    const sections = [...document.querySelectorAll('main section[id], .memory-case[id], .pool-settings[id]')];
+    const sections = [...document.querySelectorAll('main section[id], .memory-case[id], .pool-settings[id], .slo-case[id], .slo-settings[id]')];
     const current = sections.filter(el => el.getBoundingClientRect().top <= innerHeight * .35 && el.getBoundingClientRect().bottom > 75).at(-1);
     if (current) target.hash = current.id;
     languageLink.href = target.href;

@@ -1,8 +1,15 @@
-/* Case content follows the supplied manuscript's active text and original plots. */
+/* Research cases preserve the supplied source material and original observations. */
 window.SIMULATOR_CASES = [{
+  id: 'case-prefill-slo',
+  type: 'prefill-slo',
+  kicker: 'CASE 01 / TTFT SLO & PREFILL HEADROOM',
+  title: '为了首 token 的尾延时，Prefill 需要留出余量。',
+  summary: '请求并非匀速进入系统。类泊松的随机到达会产生短时扎堆；要守住 TTFT 尾部 SLO，P 资源需要覆盖平均负载之外的突发。为这些时刻配置的余量，往往表现为更低的平均 kernel 忙碌率。',
+  badges: ['2P1D · 每实例 TP8', '10–55 秒观测窗口', 'kernel 忙碌时间占比']
+}, {
   id: 'case-memory-pool',
   type: 'memory-pool',
-  kicker: 'CASE 01 / SCALE-UP MEMORY POOL',
+  kicker: 'CASE 02 / SCALE-UP MEMORY POOL',
   title: '更多容量，何时变成更高吞吐？',
   summary: '百万 token 上下文让 KV 容量成为系统约束。我们把内存池接入 scale-up fabric，在相同的 128 张 H200 预算下，联合评估部署策略、存储介质和互连拓扑。容量收益，需要覆盖远端读取与共享链路竞争的代价。',
   badges: ['100 万 token 上下文', '128 × H200', '三种模型 · 仿真分析'],
