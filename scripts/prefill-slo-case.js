@@ -1,7 +1,7 @@
 /* Raw windowed busy-time observations, separate from a qualitative queueing illustration. */
 (() => {
-  const t = window.SimI18n.t, e = value => window.SimFigures.escape(value);
-  const C = {p:'#725298',p1:'#9a79b5',d:'#b57532',ink:'#51465e',muted:'#746980',line:'#e7dfed',pale:'#f5f0fa',amber:'#fbf2e6'};
+  const e = value => window.SimFigures.escape(value);
+  const C = {p:'#725298',d:'#b57532',ink:'#51465e',muted:'#746980',line:'#e7dfed',amber:'#fbf2e6'};
   const pct = value => `${value.toFixed(1)}%`, num = value => Number(value.toFixed(2));
   const center = 'text-anchor="middle"';
   const text = (x,y,value,size=12,color=C.ink,attrs='',width) => `<text x="${num(x)}" y="${num(y)}" font-size="${window.SimI18n.fitText(value,window.SimFigures.diagramSize(size),width,attrs.match(/font-weight="([^"]+)"/)?.[1]||400)}" fill="${window.SimFigures.diagramColor(color)}" ${attrs}>${e(value)}</text>`;
@@ -17,21 +17,20 @@
   ];
   function render(item) {
     const data=window.SIMULATOR_PREFILL_SLO_DATA,id=item.id;records.set(id,data);
-    const metrics=[['p','P 池平均忙碌率',16],['d','D 池平均忙碌率',8],['all','全部 GPU 加权忙碌率',24]];
+    const metrics=[['p','P 池平均忙碌率'],['d','D 池平均忙碌率'],['all','全部 GPU 加权忙碌率']];
     return `<article class="slo-case" id="${id}" data-case-type="prefill-slo">
       <header class="slo-header"><p class="slo-kicker">${e(item.kicker)}</p><h3>${e(item.title)}</h3><p>${e(item.summary)}</p><div class="slo-badges">${item.badges.map(v=>`<span>${e(v)}</span>`).join('')}</div></header>
-      <div class="slo-metrics">${metrics.map(([key,label,gpus])=>`<div><strong>${pct(data.means[key])}</strong><span>${e(label)}</span><small>${gpus} GPU · ${data.busySecondsPerGpu[key].toFixed(2)} / 45 s ${e('每 GPU 平均')}</small></div>`).join('')}</div>
-      <nav class="slo-nav" aria-label="${e('Prefill 余量案例目录')}"><a href="#${id}-trace">01 ${e('忙碌率观测')}</a><a href="#${id}-mechanism">02 ${e('为什么要留余量')}</a><a href="#${id}-definition">03 ${e('忙碌率定义')}</a><a href="#${id}-settings">04 ${e('配置与口径')}</a></nav>
+      <div class="slo-metrics">${metrics.map(([key,label])=>`<div><strong>${pct(data.means[key])}</strong><span>${e(label)}</span></div>`).join('')}</div>
+      <nav class="slo-nav" aria-label="${e('Prefill 余量案例目录')}"><a href="#${id}-trace">01 ${e('忙碌率观测')}</a><a href="#${id}-mechanism">02 ${e('为什么要留余量')}</a><a href="#${id}-settings">03 ${e('配置与口径')}</a></nav>
 
-      <section class="slo-section" id="${id}-trace"><div class="slo-section-heading"><div><span class="micro-label">2P1D / KERNEL BUSY TIME</span><h4>${e('平均值之外，再看短时峰值。')}</h4></div><p>${e('P 池均值为 27.3%，最忙的 0.5 秒桶达到 93.3%。D 池则在这段窗口内更持续地执行 kernel。')}</p></div>
-        <figure class="slo-figure"><div class="slo-chart-tools"><div class="slo-mode-toggle" role="group" aria-label="${e('忙碌率曲线粒度')}"><button type="button" data-slo-mode="pool" aria-pressed="true">${e('池平均')}</button><button type="button" data-slo-mode="instances" aria-pressed="false">${e('展开两个 P 实例')}</button></div><button type="button" class="slo-peak-button">${e('查看 P 峰值桶')} · ${pct(data.bins[data.peakPBin].p)}</button></div>
+      <section class="slo-section" id="${id}-trace"><div class="slo-section-heading"><div><span class="micro-label">KERNEL BUSY TIME</span><h4>${e('平均值之外，再看短时峰值。')}</h4></div><p>${e('P 池均值为 27.3%，最忙的 0.5 秒桶达到 93.3%。D 池则在这段窗口内更持续地执行 kernel。')}</p></div>
+        <figure class="slo-figure"><div class="slo-chart-tools"><button type="button" class="slo-peak-button">${e('查看 P 峰值桶')} · ${pct(data.bins[data.peakPBin].p)}</button></div>
           <div class="slo-legend" data-slo-legend></div><p class="diagram-hint">${e('左右滑动查看完整曲线')} <span aria-hidden="true">↔</span></p>
-          <div class="diagram-scroll slo-chart-scroll" tabindex="0" aria-label="${e('2P1D 忙碌率曲线，可横向滚动')}"><svg data-slo-chart viewBox="0 0 1000 390" role="img" aria-label="${e('10 至 55 秒的原始忙碌率阶梯曲线与窗口均值')}"></svg></div>
+          <div class="diagram-scroll slo-chart-scroll" tabindex="0" aria-label="${e('忙碌率曲线，可横向滚动')}"><svg data-slo-chart viewBox="0 0 1000 390" role="img" aria-label="${e('10 至 55 秒的原始忙碌率阶梯曲线与窗口均值')}"></svg></div>
           <label class="slo-scrubber"><span>${e('选择 0.5 秒时间桶')}</span><input type="range" min="0" max="89" step="1" value="${data.peakPBin}" aria-label="${e('选择忙碌率时间桶')}"></label>
           <div class="slo-bin-readout" aria-live="off"><div><small>${e('选中时间桶')}</small><strong data-slo-bin-time></strong></div><div><small>${e('P 池')}</small><strong data-slo-bin-p></strong></div><div><small>${e('D 池')}</small><strong data-slo-bin-d></strong></div><div><small>${e('24 GPU 加权')}</small><strong data-slo-bin-all></strong></div></div>
           <figcaption class="slo-chart-caption">${e('每段线保留对应 0.5 秒桶的原值，不做平滑。右侧柱状图是整个 45 秒窗口的时间加权均值。')}</figcaption>
         </figure>
-        <p class="slo-observation">${e('P0 平均 42.7%，P1 平均 12.0%。池均值还会掩盖实例差异；这些差异需要结合路由、调度和负载一起解释。')}</p>
       </section>
 
       <section class="slo-section" id="${id}-mechanism"><div class="slo-section-heading"><div><span class="micro-label">ARRIVALS → QUEUES → HEADROOM</span><h4>${e('尾部 SLO，要求系统接住短时扎堆。')}</h4></div><p>${e('资源规划的目标是满足 TTFT 尾部约束，而不是只把 P 的平均忙碌率推高。')}</p></div>
@@ -43,25 +42,19 @@
         </figure>
       </section>
 
-      <section class="slo-section" id="${id}-definition"><div class="slo-section-heading"><div><span class="micro-label">WHAT “BUSY” MEANS</span><h4>${e('60 秒里执行 10 秒 kernel，忙碌率就是 1/6。')}</h4></div><p>${e('这里统计“有 kernel 在执行”的时间比例。它不表示忙碌时用了多少 SM、达到了多少峰值算力。')}</p></div>
-        <figure class="slo-definition slo-figure"><span class="small-tag">${e('定义示例，非本次观测')}</span><div class="diagram-scroll" tabindex="0" aria-label="${e('60 秒窗口与 10 秒 kernel 忙碌时间示例')}"><svg data-slo-definition viewBox="0 0 1000 170" role="img" aria-label="${e('三个 kernel 时间段合计 10 秒，除以 60 秒得到 16.7%')}"></svg></div></figure>
-        <div class="slo-formula"><strong>${e('多 GPU：先累计 GPU·s，再除以分配的 GPU·s。')}</strong><p>(16 × 27.3323% + 8 × 82.7211%) / 24 = 45.7952%</p><span>${e('P 池占 16 张卡，D 池占 8 张卡；总体统计需要按卡数和时间加权。')}</span></div>
-      </section>
-
       <details class="slo-settings" id="${id}-settings"><summary>${e('配置、统计口径与解释范围')} <span aria-hidden="true">＋</span></summary><div class="slo-settings-body"><div><h5>${e('观测配置')}</h5><p>${e('2 个 P 实例与 1 个 D 实例，每实例 TP8，共 24 张 GPU。仿真窗口为 10–55 秒，共 45 秒；按 0.5 秒分成 90 个桶。')}</p><p>${e('0.5 秒是统计桶宽，不是请求的平均到达间隔。曲线沿用包内 kernelbusytime，包含窗口内背景工作，没有重新仿真。')}</p></div><div><h5>${e('忙碌时间口径')}</h5><p>${e('单 GPU 忙碌率 = 窗口内有 kernel 执行的时间 / 窗口时长。重叠执行区间只计一次；多 GPU 以累计忙碌 GPU·s / 分配 GPU·s 汇总。')}</p><p>${e('P 池累计 196.79 / 720 GPU·s，D 池为 297.80 / 360 GPU·s，全部为 494.59 / 1080 GPU·s。')}</p></div><div class="slo-scope"><h5>${e('这组数据回答什么')}</h5><p>${e('本包提供忙碌率时间序列，没有逐请求到达时刻、TTFT 分布、SLO 阈值或不同 P 数量的对照。因此，本图不报告具体 SLO 达标率，也不将某个 P/D 配比称为最优。')}</p><p>${e('随机到达与尾部 SLO 解释了为什么资源规划需要余量；是否可以回收 P 资源，还要在同一负载下联合评估 TTFT、TPOT 与路由调度。')}</p></div></div></details>
     </article>`;
   }
 
-  function traceDrawing(data,mode,index) {
+  function traceDrawing(data,index) {
     const left=64,top=46,w=650,h=260,x=value=>left+(value-10)*w/45,y=value=>top+h-value*h/100;
-    let s=`<title>${e('2P1D 原始 kernel 忙碌率')}</title>`;
+    let s=`<title>${e('原始 kernel 忙碌率')}</title>`;
     for(const value of [0,25,50,75,100])s+=path(`M${left} ${y(value)}H714`,value===0?'#cfc4d8':'#eee8f2')+text(51,y(value)+4,`${value}`,11,C.muted,'text-anchor="end"');
     for(let value=10;value<=55;value+=5)s+=text(x(value),329,`${value}`,11,C.muted,center);
     s+=text(389,360,'仿真时间（秒）',12,C.muted,center)+text(64,26,'kernel 忙碌率（%）',12,C.muted,'',650);
-    const series=mode==='pool'?[['p',C.p,''],['d',C.d,'']]:[['p0',C.p,''],['p1',C.p1,'stroke-dasharray="5 3"'],['d',C.d,'']];
-    for(const [key,color,attrs] of series){
+    for(const [key,color] of [['p',C.p],['d',C.d]]){
       let d='';data.bins.forEach((b,i)=>{d+=(i?`V${num(y(b[key]))}`:`M${num(x(b.start))} ${num(y(b[key]))}`)+`H${num(x(b.end))}`;});
-      s+=path(d,color,`stroke-width="2.3" ${attrs}`);
+      s+=path(d,color,'stroke-width="2.3"');
     }
     for(const [key,color] of [['p',C.p],['d',C.d]])s+=path(`M${left} ${num(y(data.means[key]))}H714`,color,'stroke-width="1" stroke-dasharray="5 5" opacity=".48"');
     const selected=data.bins[index],sx=x(selected.start),sw=x(selected.end)-sx;
@@ -96,39 +89,25 @@
     return s;
   }
 
-  function definitionDrawing() {
-    let s=`<title>${e('10 秒 kernel 忙碌时间 / 60 秒窗口 = 16.7%')}</title>`+rect(85,49,830,31,'#f4f0f8','#e4dbea',7);
-    for(let value=0;value<=60;value+=10)s+=path(`M${85+830*value/60} 83v5`,'#cbbad9')+text(85+830*value/60,109,`${value} s`,11,C.muted,center);
-    [[6,10],[23,26],[45,48]].forEach(([start,end])=>{const x=85+830*start/60,w=830*(end-start)/60;s+=rect(x,49,w,31,'#d9c8ea','#bca0d1',5)+text(x+w/2,69,`${end-start} s`,11,C.p,center,w-4);});
-    s+=text(500,151,'10 s / 60 s = 1/6 ≈ 16.7%',23,C.p,`${center} font-weight="600"`);
-    return s;
-  }
-
   function mount(root) {
     const data=records.get(root.id);if(!data)return;
-    const svg=root.querySelector('[data-slo-chart]'),range=root.querySelector('.slo-scrubber input'),legend=root.querySelector('[data-slo-legend]');let mode='pool',index=data.peakPBin;
+    const svg=root.querySelector('[data-slo-chart]'),range=root.querySelector('.slo-scrubber input'),legend=root.querySelector('[data-slo-legend]');let index=data.peakPBin;
     function selectBin(value) {
       index=Math.max(0,Math.min(89,Math.round(value)));const row=data.bins[index];range.value=index;
-      svg.innerHTML=traceDrawing(data,mode,index);
+      svg.innerHTML=traceDrawing(data,index);
       root.querySelector('[data-slo-bin-time]').textContent=`${row.start.toFixed(1)}–${row.end.toFixed(1)} s`;
       for(const key of ['p','d','all'])root.querySelector(`[data-slo-bin-${key}]`).textContent=pct(row[key]);
       range.setAttribute('aria-valuetext',`${row.start.toFixed(1)}–${row.end.toFixed(1)} s; P ${pct(row.p)}; D ${pct(row.d)}`);
       root.dataset.sloBin=String(index);
     }
-    function selectMode(value) {
-      mode=value;root.dataset.sloMode=mode;root.querySelectorAll('[data-slo-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sloMode===mode)));
-      legend.innerHTML=(mode==='pool'?`<span><i class="slo-swatch is-p"></i>${e('P 池：两个实例平均')}</span>`:`<span><i class="slo-swatch is-p"></i>P0</span><span><i class="slo-swatch is-p1"></i>P1</span>`)+`<span><i class="slo-swatch is-d"></i>${e('D 池：一个实例')}</span><span>${e('浅色虚线：窗口均值')}</span>`;
-      selectBin(index);
-    }
+    legend.innerHTML=`<span><i class="slo-swatch is-p"></i>${e('P 池')}</span><span><i class="slo-swatch is-d"></i>${e('D 池')}</span><span>${e('浅色虚线：窗口均值')}</span>`;
     range.addEventListener('input',()=>selectBin(Number(range.value)));
     svg.addEventListener('pointermove',event=>{const point=svg.createSVGPoint();point.x=event.clientX;point.y=event.clientY;const local=point.matrixTransform(svg.getScreenCTM().inverse());if(local.x>=64&&local.x<=714&&local.y>=46&&local.y<=306)selectBin(Math.floor((local.x-64)/650*90));});
-    root.querySelectorAll('[data-slo-mode]').forEach(b=>b.addEventListener('click',()=>selectMode(b.dataset.sloMode)));
     root.querySelector('.slo-peak-button').addEventListener('click',()=>selectBin(data.peakPBin));
     const demo=root.querySelector('.slo-headroom-demo'),drawing=demo.querySelector('[data-slo-mechanism]');
     const clock=new SimTimeline({root:demo,duration:12,steps,stillTime:7.8,draw(time,index){drawing.innerHTML=mechanismDrawing(time,index);}});
-    root.querySelector('[data-slo-definition]').innerHTML=definitionDrawing();
     root.querySelector(`.slo-nav a[href="#${root.id}-settings"]`).addEventListener('click',()=>{root.querySelector('.slo-settings').open=true;});
-    selectMode('pool');root.__slo={selectBin,selectMode,clock};
+    selectBin(index);root.__slo={selectBin,clock};
   }
-  window.SimCaseStudies={...(window.SimCaseStudies||{}),'prefill-slo':{render,mount,mechanismDrawing,definitionDrawing}};
+  window.SimCaseStudies={...(window.SimCaseStudies||{}),'prefill-slo':{render,mount,mechanismDrawing}};
 })();

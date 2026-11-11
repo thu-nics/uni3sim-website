@@ -10,7 +10,6 @@
 .slo-metrics strong{display:block;font-size:36px;font-weight:600;letter-spacing:-.04em;color:#695080;line-height:1.2}
 .slo-metrics>div:nth-child(2) strong{color:#996127}
 .slo-metrics span{display:block;font-size:14px;margin-top:9px;color:#685d74}
-.slo-metrics small{display:block;font-size:12px;line-height:1.7;margin-top:6px;color:#746980}
 .slo-nav{display:flex;gap:18px 26px;flex-wrap:wrap;margin-top:25px;padding-bottom:20px;border-bottom:1px solid var(--border);font-size:13px;color:#685d74}
 .slo-nav a:hover{color:#725298}
 .slo-section{margin-top:44px;scroll-margin-top:90px;min-width:0}
@@ -19,15 +18,11 @@
 .slo-section-heading h4{font-size:27px;line-height:1.4;letter-spacing:-.035em;font-weight:550;margin-top:7px}
 .slo-section-heading>p{font-size:15px;line-height:1.85;flex:0 1 410px;color:var(--muted)}
 .slo-figure{margin:0;border:1px solid #e6ddec;background:#fff;border-radius:20px;padding:22px;min-width:0;overflow:hidden}
-.slo-chart-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.slo-mode-toggle{display:flex;flex-wrap:wrap;gap:5px;padding:4px;background:#f7f3fa;border:1px solid #e9e0f0;border-radius:13px;max-width:100%}
-.slo-mode-toggle button{border:0;border-radius:9px;padding:8px 13px;background:transparent;font-size:13px;color:#685d74;line-height:1.5}
-.slo-mode-toggle button[aria-pressed=true]{background:#fff;box-shadow:0 2px 8px #6042770b;color:#654582;font-weight:550}
+.slo-chart-tools{display:flex;justify-content:flex-end;align-items:center}
 .slo-peak-button{border:1px solid #ddcde9;border-radius:999px;padding:9px 14px;background:#fff;color:#695080;font-size:12px;line-height:1.5}
 .slo-legend{display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap;font-size:12px;color:#685d74;margin:20px 0 8px;line-height:1.7}
 .slo-legend>span{display:inline-flex;align-items:center;gap:7px}
 .slo-swatch{display:inline-block;width:23px;border-top:3px solid #725298}
-.slo-swatch.is-p1{border-top-color:#9a79b5;border-top-style:dashed}
 .slo-swatch.is-d{border-top-color:#b57532}
 .slo-chart-scroll svg,.slo-headroom-demo .diagram-scroll svg{width:100%;min-width:960px;height:auto}
 .slo-chart-scroll svg{touch-action:pan-x pan-y}
@@ -37,19 +32,13 @@
 .slo-bin-readout>div{text-align:center;min-width:0}
 .slo-bin-readout small{font-size:12px;display:block;color:#746980}
 .slo-bin-readout strong{font-size:19px;font-weight:550;display:block;color:#655076;margin-top:5px;font-variant-numeric:tabular-nums}
-.slo-chart-caption,.slo-observation,.slo-schematic-note{font-size:13px;line-height:1.85;color:#685d74}
+.slo-chart-caption,.slo-schematic-note{font-size:13px;line-height:1.85;color:#685d74}
 .slo-chart-caption{margin-top:15px}
-.slo-observation{margin-top:17px;padding-left:14px;border-left:2px solid #d4c1e3}
 .slo-headroom-demo .compact-tabs{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:10px}
 .slo-headroom-demo .compact-tabs button{min-width:0;white-space:normal;font-size:12px}
 .slo-headroom-demo .figure-bottom{gap:20px}
 .slo-headroom-demo .figure-caption{min-width:0}
 .slo-schematic-note{margin-top:14px}
-.slo-definition .diagram-scroll svg{width:100%;min-width:710px;height:auto}
-.slo-formula{margin-top:20px;padding:19px 22px;border-left:2px solid #c3a7d8;background:#faf7fc;color:#685d74}
-.slo-formula strong{font-size:15px;font-weight:550;color:#5c426e}
-.slo-formula p{font-size:17px;line-height:1.8;margin:9px 0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-.slo-formula span{font-size:13px;line-height:1.8}
 .slo-settings{border-block:1px solid var(--border);margin-top:34px;scroll-margin-top:90px}
 .slo-settings summary{cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;gap:14px;font-size:14px;font-weight:550;color:#63516f;list-style:none}
 .slo-settings summary::-webkit-details-marker{display:none}
@@ -60,10 +49,10 @@
 @media(max-width:850px){.slo-section-heading{align-items:flex-start;flex-direction:column;gap:16px}.slo-section-heading>p{flex-basis:auto;max-width:640px}.slo-metrics>div{padding:0 10px}.slo-metrics strong{font-size:31px}.slo-bin-readout{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
 @media(max-width:600px){
  .slo-case{padding-top:31px}.slo-header h3{font-size:29px;line-height:1.4}.slo-header>p:not(.slo-kicker){font-size:15px}
- .slo-badges span{font-size:10px}.slo-metrics{padding:20px 2px;border-radius:16px}.slo-metrics>div{padding:0 5px}.slo-metrics strong{font-size:27px}.slo-metrics span{font-size:11px}.slo-metrics small{font-size:10px}
+ .slo-badges span{font-size:10px}.slo-metrics{padding:20px 2px;border-radius:16px}.slo-metrics>div{padding:0 5px}.slo-metrics strong{font-size:27px}.slo-metrics span{font-size:11px}
  .slo-nav{font-size:11px;gap:13px 18px}.slo-section{margin-top:34px}.slo-section-heading h4{font-size:24px}.slo-section-heading>p{font-size:14px}
- .slo-figure{padding:14px;border-radius:16px}.slo-chart-tools{align-items:stretch}.slo-mode-toggle button{font-size:12px;padding:7px 9px}.slo-peak-button{font-size:11px}.slo-legend{font-size:11px;gap:8px 15px}
+ .slo-figure{padding:14px;border-radius:16px}.slo-peak-button{font-size:11px}.slo-legend{font-size:11px;gap:8px 15px}
  .slo-scrubber{grid-template-columns:1fr;gap:8px;font-size:12px}.slo-bin-readout{padding:14px 8px}.slo-bin-readout small{font-size:11px}.slo-bin-readout strong{font-size:17px}
- .slo-headroom-demo .compact-tabs button{font-size:11px;padding-inline:6px}.slo-chart-caption,.slo-observation,.slo-schematic-note{font-size:12px}.slo-formula{padding:16px}.slo-formula p{font-size:14px}
+ .slo-headroom-demo .compact-tabs button{font-size:11px;padding-inline:6px}.slo-chart-caption,.slo-schematic-note{font-size:12px}
  .slo-settings-body{grid-template-columns:1fr;font-size:13px;gap:20px}.slo-settings-body .slo-scope{grid-column:auto}
 }

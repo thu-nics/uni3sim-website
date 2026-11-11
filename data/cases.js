@@ -5,7 +5,7 @@ window.SIMULATOR_CASES = [{
   kicker: 'CASE 01 / TTFT SLO & PREFILL HEADROOM',
   title: '为了首 token 的尾延时，Prefill 需要留出余量。',
   summary: '请求并非匀速进入系统。类泊松的随机到达会产生短时扎堆；要守住 TTFT 尾部 SLO，P 资源需要覆盖平均负载之外的突发。为这些时刻配置的余量，往往表现为更低的平均 kernel 忙碌率。',
-  badges: ['2P1D · 每实例 TP8', '10–55 秒观测窗口', 'kernel 忙碌时间占比']
+  badges: ['kernel 忙碌时间占比']
 }, {
   id: 'case-memory-pool',
   type: 'memory-pool',
