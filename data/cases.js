@@ -7,9 +7,15 @@ window.SIMULATOR_CASES = [{
   summary: '请求并非匀速进入系统。类泊松的随机到达会产生短时扎堆；要守住 TTFT 尾部 SLO，P 资源需要覆盖平均负载之外的突发。为这些时刻配置的余量，往往表现为更低的平均 kernel 忙碌率。',
   badges: ['kernel 忙碌时间占比']
 }, {
+  id: 'case-cache-revenue',
+  type: 'cache-revenue',
+  kicker: 'CASE 02 / CACHE REUSE & REVENUE',
+  title: 'KV Cache 命中更多，收入反而更少？',
+  summary: '基于生产 Agentic 轨迹的 GLM-5.3 仿真：对同一批 19 条完整请求，命中率从 85% 提高到 99% 后，逻辑 token 吞吐继续上升，给定费率下的收入 / GPU 小时却下降。'
+}, {
   id: 'case-memory-pool',
   type: 'memory-pool',
-  kicker: 'CASE 02 / SCALE-UP MEMORY POOL',
+  kicker: 'CASE 03 / SCALE-UP MEMORY POOL',
   title: '更多容量，何时变成更高吞吐？',
   summary: '百万 token 上下文让 KV 容量成为系统约束。我们把内存池接入 scale-up fabric，在相同的 128 张 H200 预算下，联合评估部署策略、存储介质和互连拓扑。容量收益，需要覆盖远端读取与共享链路竞争的代价。',
   badges: ['100 万 token 上下文', '128 × H200', '三种模型 · 仿真分析'],
@@ -30,7 +36,7 @@ window.SIMULATOR_CASES = [{
 }, {
   id: 'case-hbframe-tier',
   type: 'hbframe-tier',
-  kicker: 'CASE 03 / HBFrame · MEMORY HIERARCHY',
+  kicker: 'CASE 04 / HBFrame · MEMORY HIERARCHY',
   title: 'L1 / L1E / L2：Peer 与 Cascade 的供给路径。',
   summary: '以同一组完整 KV Block，比较 H2P peer 分支与 H2C cascade 路径下的逻辑供给、准备与完成反馈。'
 }];
