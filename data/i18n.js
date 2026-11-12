@@ -845,6 +845,9 @@
   for (const [key, value] of Object.entries(cacheRevenueMessages)) if (!Object.hasOwn(messages, key)) messages[key] = value;
 
   const conciseCaseMessages = {
+    '逻辑 Token 吞吐量': 'Logical Token Throughput',
+    '每 GPU 小时收入': 'Revenue per GPU-hour',
+    'c = 缓存输入；u = 未缓存输入；o = 输出；N = token 数；p = 单价（USD / 百万 token）；T = 经过时间（秒）；GPU-hours = GPU 数量 × 经过时间（小时）。': 'c = cached input; u = uncached input; o = output; N = token count; p = price (USD per million tokens); T = elapsed time (seconds); GPU-hours = GPU count × elapsed time (hours).',
     '价格参考 ↗': 'Pricing ref ↗',
     '归一化 token 吞吐': 'Normalized token throughput',
     '归一化收入 / GPU 小时': 'Normalized revenue / GPU-hour',
