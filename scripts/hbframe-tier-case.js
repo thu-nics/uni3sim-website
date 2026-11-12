@@ -2,26 +2,26 @@
 (() => {
   const e=value=>window.SimFigures.escape(value);
   function render(item) {return `<article class="hbframe-case" id="${item.id}" data-case-type="hbframe-tier">
-<header class="intro"><div><div class="eyebrow">${e(item.kicker)}</div><h3 class="hb-title">${e(item.title)}</h3><p>${e(item.summary)}</p></div><div class="intro-aside"><strong>逻辑层次由有效供给组织决定。</strong><p>HBFrame 结合拓扑、数据放置、完整副本与预取安排划分层次。层名不固定对应一种物理介质，也不单由峰值带宽决定。</p></div></header>
-<div aria-label="逻辑层次定义" class="tier-definitions"><div class="definition"><b>L1</b><span>既定的高性能供给组织</span><p>可来自 HBM，也可来自有效的 HBM/HBF 联合组织。</p></div><div class="definition"><b>L1E</b><span>扩展执行侧层次</span><p>可以直接使用；也可以先提升到 L1 再消费。</p></div><div class="definition"><b>L2</b><span>Backing 层次</span><p>本例 KV 在 Host DRAM，使用前需恢复到执行侧。</p></div></div>
-<nav aria-label="HBFrame 案例目录" class="hb-nav"><a href="#case-hbframe-tier-processes">01 供给过程</a><a href="#case-hbframe-tier-notes">02 案例要点</a><a href="#case-hbframe-tier-settings">03 设置与边界</a></nav><section aria-labelledby="hbframe-scenario-title" data-hb-id="case-hbframe-tier-processes" id="case-hbframe-tier-processes">
-<div class="scenario-heading"><h4 data-hb-id="scenario-title" id="hbframe-scenario-title">相同逻辑任务，两种存储拓扑。</h4><span>同一模拟时钟 · 双侧联动 · 完整 KV Block</span></div>
+<header class="intro"><div><div class="eyebrow">${e(item.kicker)}</div><h3 class="hb-title">${e(item.title)}</h3><p>${e(item.summary)}</p></div></header>
+<div aria-label="逻辑层次定义" class="tier-definitions"><div class="definition"><b>L1</b><span>高性能供给</span><p>HBM 或有效的 HBM/HBF 联合供给。</p></div><div class="definition"><b>L1E</b><span>扩展执行层</span><p>直接访问，或先提升到 L1。</p></div><div class="definition"><b>L2</b><span>Backing</span><p>本例在 Host DRAM，使用前恢复到执行侧。</p></div></div>
+<nav aria-label="HBFrame 案例目录" class="hb-nav"><a href="#case-hbframe-tier-processes">01 供给过程</a><a href="#case-hbframe-tier-notes">02 案例要点</a></nav><section aria-labelledby="hbframe-scenario-title" data-hb-id="case-hbframe-tier-processes" id="case-hbframe-tier-processes">
+<div class="scenario-heading"><h4 data-hb-id="scenario-title" id="hbframe-scenario-title">四种 KV 供给过程。</h4></div>
 <div aria-label="选择供给过程" class="scenario-tabs" data-hb-id="scenario-tabs" id="hbframe-scenario-tabs" role="group"></div>
 <p class="scenario-description" data-hb-id="scenario-description" id="hbframe-scenario-description"></p>
 <figure aria-label="L1 L1E L2 访问过程动画" class="case-figure" data-hb-id="case-figure" id="hbframe-case-figure">
 <div class="figure-heading"><span class="eyebrow">H2P / PEER · H2C / CASCADE</span><div class="legend"><span><i style="background:#b39bcb"></i>L1 供给</span><span><i style="background:#87af99"></i>L1E 供给</span><span><i style="background:#d6bc8c"></i>L2 backing</span><span class="badge">真实微型轨迹</span></div></div>
 <div class="playback"><button aria-label="两侧回到起点" class="icon-button" data-hb-id="reset" id="hbframe-reset" type="button">↺</button><button aria-label="播放两侧动画" aria-pressed="false" class="icon-button" data-hb-id="play" id="hbframe-play" type="button"></button><input aria-label="两侧共同演示进度" class="scrubber" data-hb-id="scrubber" id="hbframe-scrubber" max="1000" min="0" step="1" type="range" value="0"/><span class="time-readout" data-hb-id="time-readout" id="hbframe-time-readout"></span><label class="visually-hidden" for="hbframe-speed">播放速度</label><select class="speed" data-hb-id="speed" id="hbframe-speed"><option value="0.5">0.5× 演示</option><option selected="" value="1">1× 演示</option><option value="2">2× 演示</option></select><button class="export" data-hb-id="export-frame" id="hbframe-export-frame" type="button">保存双侧当前帧 SVG ↓</button></div>
 <div aria-label="定位动画阶段" class="stages" data-hb-id="stages" id="hbframe-stages" role="group"></div>
-<figcaption class="caption"><div aria-atomic="true" aria-live="polite"><h5 data-hb-id="caption-title" id="hbframe-caption-title"></h5><p data-hb-id="caption-body" id="hbframe-caption-body"></p></div><span class="counter" data-hb-id="step-counter" id="hbframe-step-counter"></span></figcaption>
+<figcaption class="caption"><div aria-atomic="true" aria-live="polite"><h5 data-hb-id="caption-title" id="hbframe-caption-title"></h5></div><span class="counter" data-hb-id="step-counter" id="hbframe-step-counter"></span></figcaption>
 <p class="scroll-hint">可横向滑动查看完整架构和时间线。</p><div class="pair-grid">
 <div aria-label="H2P Peer 动画" class="topology-panel" data-hb-id="panel-h2p" id="hbframe-panel-h2p" role="group"><div class="panel-heading"><div><h5>H2P<span>Peer</span></h5><p>GPU 分别直连 HBM / HBF，同级双分支。</p></div><small data-hb-id="time-h2p" id="hbframe-time-h2p"></small></div><div aria-label="H2P 三角形 peer 架构" class="diagram-scroll" role="region" tabindex="0"><svg aria-label="GPU 在上，HBM 与 HBF 为并列分支" data-hb-id="architecture-h2p" id="hbframe-architecture-h2p" role="img" viewbox="0 0 600 475"></svg></div><div class="state-strip" data-hb-id="state-h2p" id="hbframe-state-h2p"></div><div class="panel-gate"><strong data-hb-id="gate-h2p" id="hbframe-gate-h2p"></strong><span data-hb-id="window-h2p" id="hbframe-window-h2p"></span></div><div class="timeline-title"><b>实际响应区间</b><span>共同模拟时间轴</span></div><div aria-label="H2P 时间线" class="diagram-scroll" role="region" tabindex="0"><svg data-hb-id="timeline-h2p" id="hbframe-timeline-h2p" role="img" viewbox="0 0 600 180"></svg></div></div>
 <div aria-label="H2C Cascade 动画" class="topology-panel panel-cascade" data-hb-id="panel-h2c" id="hbframe-panel-h2c" role="group"><div class="panel-heading"><div><h5>H2C<span>Cascade</span></h5><p>GPU → HBM 侧控制器 → HBF，级联路径。</p></div><small data-hb-id="time-h2c" id="hbframe-time-h2c"></small></div><div aria-label="H2C 纵向 cascade 架构" class="diagram-scroll" role="region" tabindex="0"><svg aria-label="GPU、HBM 控制器、HBF 纵向级联" data-hb-id="architecture-h2c" id="hbframe-architecture-h2c" role="img" viewbox="0 0 600 475"></svg></div><div class="state-strip" data-hb-id="state-h2c" id="hbframe-state-h2c"></div><div class="panel-gate"><strong data-hb-id="gate-h2c" id="hbframe-gate-h2c"></strong><span data-hb-id="window-h2c" id="hbframe-window-h2c"></span></div><div class="timeline-title"><b>实际响应区间</b><span>共同模拟时间轴</span></div><div aria-label="H2C 时间线" class="diagram-scroll" role="region" tabindex="0"><svg data-hb-id="timeline-h2c" id="hbframe-timeline-h2c" role="img" viewbox="0 0 600 180"></svg></div></div>
 </div>
-<p class="playback-note">播放、暂停、拖动与阶段定位同时控制两侧，模拟时钟与时间线横轴相同，完成状态各自提交。H2P 联合 L1 上图同步供给，H2C 上图为四轮交错供给示意；轮次不增加原始访问数，原始计时见下方时间线。两段链路可流水服务。持久 KV 与临时窗口分别计量。两侧采用各自现行部署配置，本页用于机制演示；微型运行未执行完整模型前向，不用于性能排名。</p>
+<p class="playback-note">动效解释供给机制，时间线保留原始事件。四轮交错为示意，持久副本与临时窗口分开记账；微型轨迹不代表完整模型性能排名。</p>
 </figure>
 </section>
-<section aria-label="案例要点" class="interpretation" data-hb-id="case-hbframe-tier-notes" id="case-hbframe-tier-notes"><div><h4 data-hb-id="takeaway-title" id="hbframe-takeaway-title"></h4><p data-hb-id="takeaway-body" id="hbframe-takeaway-body"></p></div><div><h4>预留、复制与可用性分别提交。</h4><p>虚线 Block 表示目标已预留但尚未就绪。本例提升与恢复保留源 backing，复制完成后才发布目标有效副本；额外占用来自真实副本，不来自重复的逻辑标签。</p></div></section>
-<details class="details" data-hb-id="settings" id="case-hbframe-tier-settings"><summary>设置与适用边界</summary><div class="details-body"><div class="settings"><div><p><b>受控工作负载</b></p><p>3 层微型 Dense 模型，TP=1；每个完整 Block 覆盖 16 个 token、该 rank 的全部相关层。A、B、C 为匿名数据标识。</p><p>初始化使用 state-only 构造有效副本；展示阶段执行当前 MemorySystem 的真实访问、复制和完成提交。使用 Analytical 存储后端。</p></div><div><p><b>当前配置</b></p><p><code data-hb-id="config-name" id="hbframe-config-name"></code></p><p data-hb-id="config-summary" id="hbframe-config-summary"></p><p>图中只展示 KV 占用；权重、runtime reserve 与设备标称容量不计入此局部账本。HBM 驻留读的 kernel 计时归属不等于已经执行 GPU kernel。</p></div></div><div class="diagram-scroll"><table><thead><tr><th>物理组织 / 访问条件</th><th>逻辑归属</th><th>消费要求</th></tr></thead><tbody><tr><td>基础 H2P / H2C 中的 HBM 有效副本</td><td>L1</td><td>按既定 L1 组织供给</td></tr><tr><td>基础 H2P / H2C 中的本地 HBF-only 副本</td><td>L1E</td><td>直接使用，或完成 promote 后使用 L1</td></tr><tr><td>有效的 HBM / HBF 互补整块条带</td><td>联合 L1；HBF backing 也可暴露 L1E 视图</td><td>两介质各读所属完整 Block，不拆分单个 Block</td></tr><tr><td>Host DRAM / SSD / Remote-HBF backing</td><td>本例所讨论的 KV L2</td><td>先恢复到执行侧；权重 direct 规则另行定义</td></tr><tr><td>H2C 有界逐层预取组织（条带案例已运行）</td><td>可声明流式 L1，preparation=layer_prefetch</td><td>当前 consumer 仍等待窗口真实填充</td></tr></tbody></table></div></div></details>
+<section aria-label="案例要点" class="interpretation" data-hb-id="case-hbframe-tier-notes" id="case-hbframe-tier-notes"><div><h4 data-hb-id="takeaway-title" id="hbframe-takeaway-title"></h4><p data-hb-id="takeaway-body" id="hbframe-takeaway-body"></p></div></section>
+
 
 </article>`;}
   function mount(root) {
@@ -60,29 +60,29 @@
     return path(points,color,'stroke-width="2.2" stroke-dasharray="4 4"')+`<circle cx="${fmt(point[0])}" cy="${fmt(point[1])}" r="4" fill="${color}"/>`;
   }
   const scenarios = {
-    direct:{tab:'L1E 直接使用',description:'相同初态：B 仅在 HBF。H2P 直接供给 GPU；H2C 经 HBM 侧桥接。两边都不建立持久 HBM 副本。',
-      takeaway:'GPU 可达，与 HBM 驻留分别描述。',detail:'H2P 是两个并列的 GPU 访问分支。H2C 的 HBF 读取经过级联路径，桥接本身不把 B 变成 HBM 有效副本。',
+    direct:{tab:'L1E 直接使用',description:'B 驻留 HBF：H2P 直达 GPU，H2C 经 HBM 侧桥接。',
+      takeaway:'直接读取，B 仍驻留 HBF。',detail:'桥接改变访问路径，不建立持久 HBM 副本。',
       steps:[['识别层次','两侧 B 都在 HBF，供给档位为 L1E。','A 在 HBM，C 在 Host DRAM；拓扑与逻辑供给分别展示。'],
         ['选择 direct','提交 L1E 直接读取，不建立持久 HBM 目标。','H2P 与 H2C 分别兑现各自的真实访问路径。'],
         ['访问路径','Peer 走直接分支；Cascade 经 HBM 侧桥接。','路径上的活动指示是机制示意，实际响应区间见各侧时间线。'],
         ['完成反馈','各侧按自己的真实完成时间返回结果。','B 仍在 HBF；两侧都没有新增持久 HBM Block。'],
         ['放行消费','所需 Fetch 完成，consumer 才可执行。','这里只显示依赖门，不执行完整 GPU model forward。']]},
-    promote:{tab:'L1E → L1 提升',description:'两侧先把 B 的完整有效内容准备到 HBM，再从 L1 读取。比较直接分支与级联路径的准备过程。',
-      takeaway:'复制完成后，才建立有效的 L1 供给。',detail:'Peer 与 Cascade 的路径不同，完整副本和提交规则相同。本例 retains_backing=true，提升后保留 HBF 源副本。',
+    promote:{tab:'L1E → L1 提升',description:'先将完整的 B 复制到 HBM，提交后从 L1 读取。',
+      takeaway:'复制完成后，才发布 L1。',detail:'完整复制后发布 HBM 有效副本，保留 HBF backing。',
       steps:[['识别层次','B 尚无有效的 HBM 副本。','两侧选择同一个逻辑转换，交给各自的存储组织兑现。'],
         ['预留目标','先预留完整 HBM Block，目标处于 copying。','虚线目标不可作为 L1 命中；复制源仍然有效。'],
         ['执行复制','按实际路径读取 HBF，再完成目标 HBM 写入。','同一模拟时钟下，一侧可以先完成准备，不强行同时提交。'],
         ['提交 L1','各侧在复制完成后提交目标 resident。','HBM / HBF 是同一个逻辑 Block 的完整双副本。'],
         ['放行消费','完成后续 L1 Fetch，再放行 consumer。','容量预留、复制完成与读取返回是不同边界。']]},
-    restore:{tab:'L2 → L1 恢复',description:'两侧 C 都在 Host DRAM backing。恢复到 HBM 后再作为 L1 KV 使用；Host 路径与 HBF 路径分开。',
-      takeaway:'L2 有效，不代表执行侧已经就绪。',detail:'这个受控恢复案例用于核对共同的 L2 规则；HBF 的 peer/cascade 位置不改变 Host DRAM 源副本需要恢复的事实。',
+    restore:{tab:'L2 → L1 恢复',description:'将 Host DRAM 中的 C 恢复到 HBM，再供给 GPU。',
+      takeaway:'先恢复到 HBM，再消费。',detail:'L2 数据恢复到执行侧后，再放行消费。',
       steps:[['识别 backing','C 的有效内容只在 Host DRAM，属于 KV L2。','SSD 是更深的 backing 介质，本次没有访问。'],
         ['预留目标','预留完整 HBM 目标，不提前发布就绪。','源 backing 在复制期间保持有效。'],
         ['恢复路径','Host 读取、链路服务与目标写入按依赖执行。','时间线保留实际重叠；不累加所有响应区间当作总时长。'],
         ['提交恢复','完成所需动作后，C 的 HBM 副本变为 resident。','本例保留 Host DRAM backing；新增占用来自真实副本。'],
         ['放行消费','恢复后完成 L1 Fetch，consumer 获得数据。','该微型访问不用于推断完整请求的 TTFT 或吞吐收益。']]},
-    striped:{tab:'HBM / HBF 联合 L1',description:'A / B 是互补放置的完整 Block。H2P 从两个 peer 分支供给；H2C 按真实级联路径填充有界 HBM 窗口。',
-      takeaway:'联合 L1 的供给组织，也要由拓扑兑现。',detail:'H2P 的 HBM/HBF 分支可交叠。H2C 本例启用一层预取窗口：临时窗口与持久 Block 副本单独计量，不把桥接或 staging 画成持久迁移。',
+    striped:{tab:'HBM / HBF 联合 L1',description:'A / B 整块分布于 HBM/HBF，比较并行分支与级联预取。',
+      takeaway:'联合 L1，按拓扑组织供给。',detail:'H2P 可并行供给；H2C 使用有界窗口交错供给，持久副本保持原位。',
       steps:[['识别组织','A / B 在两个介质完整驻留，共同构成条带 L1。','这是 Block 之间的分配，不是把同一个 Block 拆在两个介质上。'],
         ['选择 L1','按各侧已声明的供给组织准备数据。','H2C 保留有界预取窗口，尚未填好的窗口不能放行 consumer。'],
         ['并行与级联','H2P 同步供给；H2C 连续展示四轮交错供给。','右侧每轮先以 HBM A 供给并准备 HBF B，窗口就绪后切换到 B 供给。轮次为机制示意，原始时序保留在下方。'],
@@ -316,7 +316,7 @@
       if(i===stage)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
       button.style.setProperty('--fill',i<stage?'100%':i===stage?`${100*clamp((position-stageStarts[i])/((stageStarts[i+1]??1.01)-stageStarts[i]))}%`:'0%');
     });
-    if(lastStage!==stage) {lastStage=stage;$('caption-title').textContent=spec.steps[stage][1];$('caption-body').textContent=spec.steps[stage][2];$('step-counter').textContent=`0${stage+1} / 05`;}
+    if(lastStage!==stage) {lastStage=stage;$('caption-title').textContent=spec.steps[stage][1];$('step-counter').textContent=`0${stage+1} / 05`;}
     syncPlay();
     window.SimI18n.apply(root);
   }
@@ -338,9 +338,9 @@
     $('stages').querySelectorAll('button').forEach((button,i)=>button.addEventListener('click',()=>seek(selected==='striped'&&i===2 ? .34 : stagePositions[i])));
     $('scenario-tabs').querySelectorAll('[data-case]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.case===selected)));
     $('takeaway-title').textContent=spec.takeaway;$('takeaway-body').textContent=spec.detail;
-    $('config-name').textContent=topologies.map(t=>t.toUpperCase()+': '+(selected==='striped'?'striped':'basic')).join(' · ');
-    $('config-summary').textContent=window.SimI18n.t('每 Block')+' '+bytes(pair.h2p.block_bytes)+'. '+window.SimI18n.t('H2C 预取层数')+': '+pair.h2c.kv_prefetch_layers+'; '+window.SimI18n.t('窗口预算')+': '+fmt(pair.h2c.kv_stage_capacity_bytes/1024**3)+' GiB. '+window.SimI18n.t('窗口实际使用量在面板单列。');
-    
+
+
+
     render();schedule();
   }
   $('scenario-tabs').innerHTML=Object.entries(scenarios).map(([id,s])=>`<button type="button" data-case="${id}" aria-pressed="false">${esc(s.tab)}</button>`).join('');
@@ -360,7 +360,6 @@
   root.__hbframe=window.HBFrameTierCase={selectCase,seek,data,getState:()=>({scenario:selected,position,paused,stage:phaseAt(position),time_ps:clock(position),
     panels:Object.fromEntries(topologies.map(topology=>{const c=pair[topology],s=localState(c,clock(position),phaseAt(position));return [topology,{time_ps:s.time,stage:s.stage,ready:s.ready,duration_ps:c.duration_ps}];}))})};
   motion.addEventListener('change',()=>{if(motion.matches)paused=true;render();schedule();});
-  root.querySelector('.hb-nav a[href="#case-hbframe-tier-settings"]').addEventListener('click',()=>{$('settings').open=true;});
   selectCase(new URLSearchParams(location.search).get('hbcase')||'direct');
 
   }

@@ -5,7 +5,7 @@ window.SIMULATOR_CASES = [{
   kicker: 'CASE 01 / TTFT SLO & PREFILL HEADROOM',
   title: '为了首 token 的尾延时，Prefill 需要留出余量。',
   summary: '请求并非匀速进入系统。类泊松的随机到达会产生短时扎堆；要守住 TTFT 尾部 SLO，P 资源需要覆盖平均负载之外的突发。为这些时刻配置的余量，往往表现为更低的平均 kernel 忙碌率。',
-  badges: ['kernel 忙碌时间占比']
+  badges: []
 }, {
   id: 'case-cache-revenue',
   type: 'cache-revenue',
@@ -38,5 +38,5 @@ window.SIMULATOR_CASES = [{
   type: 'hbframe-tier',
   kicker: 'CASE 04 / HBFrame · MEMORY HIERARCHY',
   title: 'L1 / L1E / L2：Peer 与 Cascade 的供给路径。',
-  summary: '以同一组完整 KV Block，比较 H2P peer 分支与 H2C cascade 路径下的逻辑供给、准备与完成反馈。'
+  summary: '在 H2P 与 H2C 拓扑下，对照 KV 的直接访问、提升、恢复与联合供给。'
 }];

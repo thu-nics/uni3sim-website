@@ -19,7 +19,7 @@
     const data=window.SIMULATOR_PREFILL_SLO_DATA,id=item.id;records.set(id,data);
     const metrics=[['p','P 池平均忙碌率'],['d','D 池平均忙碌率']];
     return `<article class="slo-case" id="${id}" data-case-type="prefill-slo">
-      <header class="slo-header"><p class="slo-kicker">${e(item.kicker)}</p><h3>${e(item.title)}</h3><p>${e(item.summary)}</p><div class="slo-badges">${item.badges.map(v=>`<span>${e(v)}</span>`).join('')}</div></header>
+      <header class="slo-header"><p class="slo-kicker">${e(item.kicker)}</p><h3>${e(item.title)}</h3><p>${e(item.summary)}</p>${item.badges.length?`<div class="slo-badges">${item.badges.map(v=>`<span>${e(v)}</span>`).join('')}</div>`:''}</header>
       <div class="slo-metrics">${metrics.map(([key,label])=>`<div><strong>${pct(data.means[key])}</strong><span>${e(label)}</span></div>`).join('')}</div>
       <nav class="slo-nav" aria-label="${e('Prefill 余量案例目录')}"><a href="#${id}-trace">01 ${e('忙碌率观测')}</a><a href="#${id}-mechanism">02 ${e('为什么要留余量')}</a><a href="#${id}-settings">03 ${e('配置与口径')}</a></nav>
 

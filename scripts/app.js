@@ -122,7 +122,12 @@
     const sections = [...document.querySelectorAll('main section[id], .memory-case[id], .pool-settings[id], .slo-case[id], .slo-settings[id], .cache-revenue-case[id], .cr-settings[id], .hbframe-case[id], .hbframe-case details[id]')];
     const nearBottom = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
     const readingLine = innerHeight * (nearBottom ? .5 : .35);
-    const current = sections.filter(el => el.getBoundingClientRect().top <= readingLine && el.getBoundingClientRect().bottom > 75).at(-1);
+    let current = sections.filter(el => el.getBoundingClientRect().top <= readingLine && el.getBoundingClientRect().bottom > 75).at(-1);
+    // A short final section cannot always scroll up to the normal reading line.
+    const inView = el => {const box=el.getBoundingClientRect();return box.top>=75&&box.top<innerHeight-80&&box.bottom>75;};
+    const anchored = sections.find(el => el.id === location.hash.slice(1));
+    if (anchored && inView(anchored)) current = anchored;
+    else if (nearBottom) current = sections.find(inView) || current;
     if (current) target.hash = current.id;
     languageLink.href = target.href;
   });

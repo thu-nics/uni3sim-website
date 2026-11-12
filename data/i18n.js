@@ -844,6 +844,35 @@
   };
   for (const [key, value] of Object.entries(cacheRevenueMessages)) if (!Object.hasOwn(messages, key)) messages[key] = value;
 
+  const conciseCaseMessages = {
+    '价格参考 ↗': 'Pricing ref ↗',
+    '归一化 token 吞吐': 'Normalized token throughput',
+    '归一化收入 / GPU 小时': 'Normalized revenue / GPU-hour',
+    '吞吐公式': 'Token throughput formula',
+    '单位 GPU 小时收入公式': 'Revenue per GPU-hour formula',
+    '在 H2P 与 H2C 拓扑下，对照 KV 的直接访问、提升、恢复与联合供给。': 'Compare direct access, promotion, restoration, and joint KV supply in H2P and H2C.',
+    '四种 KV 供给过程。': 'Four KV supply processes.',
+    '高性能供给': 'High-performance supply',
+    'HBM 或有效的 HBM/HBF 联合供给。': 'HBM or effective joint HBM/HBF supply.',
+    '扩展执行层': 'Extended execution tier',
+    '直接访问，或先提升到 L1。': 'Access directly, or promote to L1 first.',
+    '本例在 Host DRAM，使用前恢复到执行侧。': 'Here, restore host DRAM data to the execution side before use.',
+    '动效解释供给机制，时间线保留原始事件。四轮交错为示意，持久副本与临时窗口分开记账；微型轨迹不代表完整模型性能排名。': 'Motion illustrates supply mechanisms; timelines retain recorded events. The four interleaved rounds are schematic. Persistent replicas and temporary windows are counted separately; microtraces do not rank full-model performance.',
+    'B 驻留 HBF：H2P 直达 GPU，H2C 经 HBM 侧桥接。': 'B resides in HBF: H2P reaches the GPU directly; H2C bridges through the HBM side.',
+    '直接读取，B 仍驻留 HBF。': 'Direct reads keep B in HBF.',
+    '桥接改变访问路径，不建立持久 HBM 副本。': 'Bridging changes the access path without creating a persistent HBM replica.',
+    '先将完整的 B 复制到 HBM，提交后从 L1 读取。': 'Copy the complete B block to HBM, commit it, then read from L1.',
+    '复制完成后，才发布 L1。': 'Publish L1 after the copy completes.',
+    '完整复制后发布 HBM 有效副本，保留 HBF backing。': 'Publish the valid HBM replica after the full copy; retain HBF backing.',
+    '将 Host DRAM 中的 C 恢复到 HBM，再供给 GPU。': 'Restore C from host DRAM to HBM, then supply the GPU.',
+    '先恢复到 HBM，再消费。': 'Restore to HBM, then consume.',
+    'L2 数据恢复到执行侧后，再放行消费。': 'Release the consumer after restoring L2 data to the execution side.',
+    'A / B 整块分布于 HBM/HBF，比较并行分支与级联预取。': 'Complete A/B blocks span HBM/HBF; compare parallel branches with cascade prefetch.',
+    '联合 L1，按拓扑组织供给。': 'Joint L1 follows the topology.',
+    'H2P 可并行供给；H2C 使用有界窗口交错供给，持久副本保持原位。': 'H2P supplies in parallel; H2C interleaves through a bounded window. Persistent replicas stay in place.'
+  };
+  for (const [key, value] of Object.entries(conciseCaseMessages)) if (!Object.hasOwn(messages, key)) messages[key] = value;
+
   const patterns = [
     [/^第 (\d+) \/ 4 轮 · 机制示意$/, (_, n) => `Round ${n} / 4 · schematic`],
     [/^含 (.+) 未就绪预留$/, (_, n) => `Includes ${n} pending`],

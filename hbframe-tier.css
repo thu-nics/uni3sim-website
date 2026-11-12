@@ -187,7 +187,7 @@
 .hbframe-case .definition span{font-size:13px;line-height:1.8;display:block;margin:7px 0 0}
 .hbframe-case .definition p{font-size:13px;line-height:1.8}
 .hbframe-case .hb-nav{display:flex;gap:20px 28px;flex-wrap:wrap;padding:0 0 20px;margin-bottom:34px;border-bottom:1px solid var(--border);font-size:13px;line-height:1.7}
-.hbframe-case #case-hbframe-tier-processes,.hbframe-case #case-hbframe-tier-notes,.hbframe-case #case-hbframe-tier-settings{scroll-margin-top:90px}
+.hbframe-case #case-hbframe-tier-processes,.hbframe-case #case-hbframe-tier-notes{scroll-margin-top:90px}
 .hbframe-case .scenario-heading h4{font-size:27px;font-weight:550;line-height:1.4;letter-spacing:-.035em}
 .hbframe-case .scenario-heading span{font-size:12px;line-height:1.8}
 .hbframe-case .scenario-tabs{margin-top:20px;gap:5px}
@@ -206,6 +206,7 @@
 .hbframe-case .stages small{font-size:11px}
 .hbframe-case .caption h5{font-size:18px;line-height:1.65;font-weight:550;margin:0 0 7px}
 .hbframe-case .caption p{font-size:14px;line-height:1.85;max-width:900px}
+.hbframe-case .case-figure>.caption{min-height:0;margin:16px 0}
 .hbframe-case .counter{font-size:12px}
 .hbframe-case .pair-grid{gap:20px}
 .hbframe-case .topology-panel{padding:18px 12px;background:#fff}
@@ -224,7 +225,7 @@
 .hbframe-case .panel-gate strong{max-width:100%}
 .hbframe-case .timeline-title{font-size:12px;line-height:1.8}
 .hbframe-case .playback-note{font-size:13px;line-height:1.9;margin-top:18px}
-.hbframe-case .interpretation{gap:28px;margin-top:24px}
+.hbframe-case .interpretation{grid-template-columns:1fr;gap:0;margin-top:20px}
 .hbframe-case .interpretation h4{font-size:18px;line-height:1.7;font-weight:550;margin-bottom:9px}
 .hbframe-case .interpretation p{font-size:14px;line-height:1.9}
 .hbframe-case .details{margin-top:30px}

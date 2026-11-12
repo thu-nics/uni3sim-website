@@ -23,7 +23,7 @@ Uni³ spans compute architectures, communication protocols, and memory & storage
 - `scripts/case-studies.js`、`case-studies.css`：案例版式与交互图解。
 - `scripts/prefill-slo-case.js`、`prefill-slo.css`：Prefill 余量案例、原始忙碌率阶梯曲线与机制动画。
 - `data/prefill-slo.js`：2P1D、TP8 配置下 10–55 秒窗口的 90 个 0.5 秒原始桶。
-- `scripts/cache-revenue-case.js`、`cache-revenue.css`：CASE 02 的双图、数值尺度切换与已有命中率采样点选择。
+- `scripts/cache-revenue-case.js`、`cache-revenue.css`：CASE 02 的归一化双图、数学公式与已有命中率采样点选择。
 - `data/cache-revenue.js`：21 个 N=19 USD 口径采样点、三类 token 单价和比较结果。
 - `scripts/hbframe-tier-case.js`、`hbframe-tier.css`：HBFrame 四种供给过程、H2P / H2C 联动动画、进度和 SVG 保存。
 - `data/hbframe-tier.js`：8 份原始受控微型轨迹，保留事件时间和 Block 状态边界。
