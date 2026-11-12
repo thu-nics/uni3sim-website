@@ -41,8 +41,9 @@
 .cr-explanation>div{display:flex;flex-direction:column;min-width:0}
 .cr-explanation h5{font-size:21px;line-height:1.6;font-weight:550;margin:9px 0}
 .cr-explanation p{font-size:15px;line-height:1.9;color:var(--muted)}
-.cr-equation{display:flex;align-items:center;justify-content:center;min-width:0;min-height:140px;overflow-x:auto;background:#faf7fc;border-left:2px solid #c3a7d8;padding:20px 12px;margin-top:20px;color:#654d77}
-.cr-equation math{font-family:"Cambria Math","STIX Two Math","Latin Modern Math",math,serif;font-size:28px;flex-shrink:0}
+.cr-explanation>div>p{margin-bottom:22px}
+.cr-equation{display:flex;align-items:center;justify-content:center;min-width:0;min-height:100px;border-top:1px solid #e9e1ed;padding:18px 10px;margin-top:auto}
+.cr-equation img{display:block;width:auto;max-width:100%;height:auto}
 .cr-variables{font-size:13px;line-height:1.9;color:#71667c;margin-top:20px}
 .cr-peak-note{font-size:14px;line-height:1.9;color:#5d6f65;background:#f5f9f6;border-left:2px solid #bdd3c6;padding:15px 18px;margin-top:20px}
 .cr-settings{margin-top:32px;border-block:1px solid var(--border);scroll-margin-top:90px}
@@ -54,4 +55,4 @@
 @media(max-width:1000px){.cr-panels{grid-template-columns:1fr;gap:22px}.cr-chart-scroll svg{max-height:410px}.cr-scroll-hint{display:block}.cr-section-heading{align-items:flex-start;flex-direction:column;gap:14px}.cr-section-heading>p{max-width:none}.cr-readouts{grid-template-columns:repeat(3,minmax(0,1fr))}.cr-readouts strong{font-size:17px}}
 @media(max-width:600px){.cache-revenue-case{padding-top:31px}.cr-header h3{font-size:29px;line-height:1.4}.cr-header>p:not(.cr-kicker){font-size:15px}.cr-nav{font-size:12px;gap:13px 18px}.cr-section{margin-top:32px}.cr-section-heading h4{font-size:24px}.cr-section-heading>p{font-size:13px}.cr-figure{padding:14px;border-radius:16px}.cr-jumps button{padding:7px 14px;font-size:12px}.cr-legend{font-size:11px;gap:7px 16px;margin:17px 0}.cr-legend small{font-size:11px}.cr-panel-heading h5{font-size:17px}.cr-delta{font-size:25px}.cr-mode-label{font-size:11px}.cr-chart-scroll svg{min-width:460px}.cr-scrubber{grid-template-columns:1fr;gap:8px;font-size:12px}.cr-readouts{grid-template-columns:1fr;gap:15px}.cr-readouts strong{font-size:20px}.cr-readouts small,.cr-readouts span{font-size:12px}.cr-explanation{grid-template-columns:1fr;gap:24px}.cr-explanation h5{font-size:19px}.cr-explanation p{font-size:14px}.cr-variables{font-size:12px}.cr-peak-note{font-size:13px}.cr-settings-body{grid-template-columns:1fr;font-size:13px;gap:22px}}
 
-@media(max-width:600px){.cr-equation{min-height:130px;padding:18px 10px}.cr-equation math{font-size:25px}}
+@media(max-width:600px){.cr-equation{min-height:94px;padding:16px 0}}

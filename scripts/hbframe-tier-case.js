@@ -4,7 +4,7 @@
   function render(item) {return `<article class="hbframe-case" id="${item.id}" data-case-type="hbframe-tier">
 <header class="intro"><div><div class="eyebrow">${e(item.kicker)}</div><h3 class="hb-title">${e(item.title)}</h3><p>${e(item.summary)}</p></div></header>
 <div aria-label="逻辑层次定义" class="tier-definitions"><div class="definition"><b>L1</b><span>高性能供给</span><p>HBM 或有效的 HBM/HBF 联合供给。</p></div><div class="definition"><b>L1E</b><span>扩展执行层</span><p>直接访问，或先提升到 L1。</p></div><div class="definition"><b>L2</b><span>Backing</span><p>本例在 Host DRAM，使用前恢复到执行侧。</p></div></div>
-<nav aria-label="HBFrame 案例目录" class="hb-nav"><a href="#case-hbframe-tier-processes">01 供给过程</a><a href="#case-hbframe-tier-notes">02 案例要点</a></nav><section aria-labelledby="hbframe-scenario-title" data-hb-id="case-hbframe-tier-processes" id="case-hbframe-tier-processes">
+<section aria-labelledby="hbframe-scenario-title" data-hb-id="case-hbframe-tier-processes" id="case-hbframe-tier-processes">
 <div class="scenario-heading"><h4 data-hb-id="scenario-title" id="hbframe-scenario-title">四种 KV 供给过程。</h4></div>
 <div aria-label="选择供给过程" class="scenario-tabs" data-hb-id="scenario-tabs" id="hbframe-scenario-tabs" role="group"></div>
 <p class="scenario-description" data-hb-id="scenario-description" id="hbframe-scenario-description"></p>
@@ -20,7 +20,7 @@
 <p class="playback-note">动效解释供给机制，时间线保留原始事件。四轮交错为示意，持久副本与临时窗口分开记账；微型轨迹不代表完整模型性能排名。</p>
 </figure>
 </section>
-<section aria-label="案例要点" class="interpretation" data-hb-id="case-hbframe-tier-notes" id="case-hbframe-tier-notes"><div><h4 data-hb-id="takeaway-title" id="hbframe-takeaway-title"></h4><p data-hb-id="takeaway-body" id="hbframe-takeaway-body"></p></div></section>
+
 
 
 </article>`;}
@@ -337,7 +337,7 @@
     $('stages').innerHTML=spec.steps.map((s,i)=>`<button type="button" data-stage="${i}"><small>0${i+1}</small>${esc(s[0])}</button>`).join('');
     $('stages').querySelectorAll('button').forEach((button,i)=>button.addEventListener('click',()=>seek(selected==='striped'&&i===2 ? .34 : stagePositions[i])));
     $('scenario-tabs').querySelectorAll('[data-case]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.case===selected)));
-    $('takeaway-title').textContent=spec.takeaway;$('takeaway-body').textContent=spec.detail;
+
 
 
 
