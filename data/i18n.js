@@ -149,6 +149,7 @@
     '汪玉': 'Yu Wang',
     '同等贡献': 'These authors contribute equally.',
     '通讯作者': 'Corresponding author',
+    '参考文献': 'References',
     '计算 · 互连 · 存储 · 系统': 'COMPUTE · INTERCONNECTS · MEMORY · SYSTEMS',
     '当前浏览器未启用 JavaScript，交互图解不可播放；页面文字仍可阅读。': 'JavaScript is disabled. The text remains readable, but interactive diagrams require JavaScript.',
     'NICS-EFC SysArch 首页': 'NICS-EFC SysArch home',
